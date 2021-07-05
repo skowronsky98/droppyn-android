@@ -23,8 +23,10 @@ class DroppynRepository(private val database: DroppynDatabase) {
         withContext(Dispatchers.IO){
             try {
                 val brands = DroppynApi.retrofitService.getBrandProperties()
-                if(brands.isNotEmpty())
+                if(brands.isNotEmpty()) {
                     database.brandDao.deleteAll()
+//                    brands.forEach { Log.i("retrofit",it.name) }
+                }
                 database.brandDao.insertAll(*NetworkBrandContainer(brands).asDatabaseModel())
             }catch (e: Exception){
                 Log.i("retrofit",e.message.toString())

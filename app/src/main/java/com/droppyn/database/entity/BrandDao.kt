@@ -14,6 +14,9 @@ interface BrandDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg databaseBrand: DatabaseBrand)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(databaseBrand: DatabaseBrand)
+
     @Query("DELETE FROM brands")
     fun deleteAll()
 }

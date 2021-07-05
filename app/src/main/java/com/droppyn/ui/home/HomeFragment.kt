@@ -40,6 +40,10 @@ class HomeFragment : Fragment() {
     binding.homeViewModel = homeViewModel
 
 
+    homeViewModel.getBrands().observe(viewLifecycleOwner, { brands ->
+        brands.forEach { Log.i("room",it.name) }
+    })
+
     return binding.root
   }
 

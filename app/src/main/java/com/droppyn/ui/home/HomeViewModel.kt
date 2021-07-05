@@ -1,15 +1,15 @@
 package com.droppyn.ui.home
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
+import com.droppyn.database.entity.DatabaseBrand
 import com.droppyn.database.getDatabase
-import com.droppyn.network.DroppynApi
+import com.droppyn.domain.Brand
+import com.droppyn.domain.Media
 import com.droppyn.repository.DroppynRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -18,21 +18,25 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
     val text: LiveData<String> = _text
 
-
     private val database = getDatabase(application)
     private val droppynRepository = DroppynRepository(database)
 
     init {
         refreshData()
+
     }
 
     private fun refreshData() {
         viewModelScope.launch {
             droppynRepository.refreshBrands()
-            _text.value = droppynRepository.brands.value?.size.toString()
+
+//            _text.value = droppynRepository.brands.value?.size.toString()
 //            _properties = personalTrainerRepository.advertisments
         }
     }
+
+    fun getBrands(): LiveData<List<Brand>> = droppynRepository.brands
+
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
