@@ -1,6 +1,7 @@
 package com.droppyn.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.droppyn.R
 import com.droppyn.databinding.FragmentHomeBinding
+import com.droppyn.network.DroppynApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
@@ -29,6 +34,10 @@ class HomeFragment : Fragment() {
     binding = FragmentHomeBinding.inflate(inflater, container, false)
     binding.homeViewModel = homeViewModel
 
+    homeViewModel.refreshData()
+
     return binding.root
   }
+
+
 }
