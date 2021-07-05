@@ -1,5 +1,6 @@
 package com.droppyn.network.dto
 
+import com.droppyn.database.entity.DatabaseBrand
 import com.droppyn.domain.Brand
 import com.droppyn.domain.Media
 import com.squareup.moshi.Json
@@ -30,17 +31,16 @@ fun NetworkBrandContainer.asDomainModel(): List<Brand> {
 	}
 }
 
-//fun NetworkBrandContainer.asDatabaseModel(): Array<DatabaseAdvertisment> {
-//	return advertisments.map {
-//		DatabaseAdvertisment(
-//			id = it.id,
-//			firstname = it.firstname,
-//			surname = it.surname,
-//			age = it.age,
-//			bio = it.bio,
-//			active = it.active,
-//			price = it.price,
-//			description = it.description
-//		)
-//	}.toTypedArray()
-//}
+fun NetworkBrandContainer.asDatabaseModel(): Array<DatabaseBrand> {
+	return brands.map {
+		DatabaseBrand(
+			id = it.id,
+			name = it.name,
+			media = Media(
+				it.media.imageUrl,
+				it.media.smallImageUrl,
+				it.media.thumbUrl
+			)
+		)
+	}.toTypedArray()
+}

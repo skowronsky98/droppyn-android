@@ -18,7 +18,15 @@ import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
-  private lateinit var homeViewModel: HomeViewModel
+//  private lateinit var homeViewModel: HomeViewModel
+
+  private val homeViewModel: HomeViewModel by lazy {
+    val activity = requireNotNull(this.activity) {
+      "You can only access the viewModel after onViewCreated()"
+    }
+    ViewModelProvider(this,HomeViewModel.Factory(activity.application)).get(HomeViewModel::class.java)
+  }
+
   private lateinit var binding: FragmentHomeBinding
 
   override fun onCreateView(
@@ -27,14 +35,10 @@ class HomeFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View? {
 
-    homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
-
-
     binding = FragmentHomeBinding.inflate(inflater, container, false)
+    binding.lifecycleOwner = this
     binding.homeViewModel = homeViewModel
 
-    homeViewModel.refreshData()
 
     return binding.root
   }
