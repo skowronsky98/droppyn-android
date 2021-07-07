@@ -1,7 +1,6 @@
 package com.droppyn.network.dto
 
 data class OfferDTO (
-
 	val id : String,
 	val price : Int,
 	val active : Boolean,

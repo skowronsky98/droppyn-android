@@ -27,3 +27,15 @@ fun List<DatabaseBrand>.asDomainModel(): List<Brand> {
         )
     }
 }
+
+fun databaseBrandtoDomain(it: DatabaseBrand): Brand{
+    return Brand(
+            id = it.id,
+            name = it.name,
+            media = Media(
+                    it.media.imageUrl,
+                    it.media.smallImageUrl,
+                    it.media.thumbUrl
+            )
+    )
+}

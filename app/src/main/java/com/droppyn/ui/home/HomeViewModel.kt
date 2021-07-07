@@ -5,10 +5,7 @@ import androidx.lifecycle.*
 import com.droppyn.database.entity.DatabaseBrand
 import com.droppyn.database.entity.DatabaseShoesAndBrand
 import com.droppyn.database.getDatabase
-import com.droppyn.domain.Brand
-import com.droppyn.domain.Media
-import com.droppyn.domain.Shoe
-import com.droppyn.domain.Size
+import com.droppyn.domain.*
 import com.droppyn.repository.DroppynRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,6 +39,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun getBrands(): LiveData<List<Brand>> = droppynRepository.brands
     fun getShoes(): LiveData<List<Shoe>> = droppynRepository.shoes
     fun getSizeChart(): LiveData<List<Size>> = droppynRepository.sizechart
+    fun getUsers(): LiveData<List<User>> = droppynRepository.users
 
 
 

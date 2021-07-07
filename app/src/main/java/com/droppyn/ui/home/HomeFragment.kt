@@ -40,18 +40,24 @@ class HomeFragment : Fragment() {
     binding.homeViewModel = homeViewModel
 
 
-//    homeViewModel.getBrands().observe(viewLifecycleOwner, { brands ->
-//        brands.forEach { Log.i("room",it.name) }
-//    })
+    homeViewModel.getBrands().observe(viewLifecycleOwner, { brands ->
+        brands.forEach { Log.i("room",it.name) }
+    })
 
 //      homeViewModel.getShoes().observe(viewLifecycleOwner, { shoes ->
 //        shoes.forEach { Log.i("room",it.model+" "+ it.brand.name) }
 //    })
 
 
-    homeViewModel.getSizeChart().observe(viewLifecycleOwner, { size ->
-      size.forEach { Log.i("room",it.us.toString()+" " + it.brand.name) }
+//    homeViewModel.getSizeChart().observe(viewLifecycleOwner, { size ->
+//      size.forEach { Log.i("room",it.us.toString()+" " + it.brand.name) }
+//    })
+
+    homeViewModel.getUsers().observe(viewLifecycleOwner, { user ->
+      user.forEach { Log.i("room",it.email+" " + it.defultSize) }
     })
+
+
 
 //      homeViewModel.getShoesAndBrand().observe(viewLifecycleOwner, { shoes ->
 //        shoes.forEach { Log.i("room",it.shoe.model + " ") }

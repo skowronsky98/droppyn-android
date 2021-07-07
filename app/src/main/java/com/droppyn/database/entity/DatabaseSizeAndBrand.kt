@@ -23,11 +23,19 @@ fun List<DatabaseSizeAndBrand>.asDomainModel(): List<Size> {
                 uk = it.size.uk,
                 eu = it.size.eu,
                 type = it.size.type,
-                brand = Brand(
-                        id = it.brand.id,
-                        name = it.brand.name,
-                        media = it.brand.media
-                )
+                brand = databaseBrandtoDomain(it.brand)
+
         )
     }
+}
+
+fun databseSizeAndBrandToDomain(it: DatabaseSizeAndBrand): Size{
+    return Size(
+            id = it.size.id,
+            us = it.size.us,
+            uk = it.size.uk,
+            eu = it.size.eu,
+            type = it.size.type,
+            brand = databaseBrandtoDomain(it.brand)
+    )
 }

@@ -1,7 +1,8 @@
-package com.droppyn.database.entity
+package com.droppyn.database.entity.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.droppyn.database.entity.DatabaseShoe
 
 @Dao
 interface ShoeDao {

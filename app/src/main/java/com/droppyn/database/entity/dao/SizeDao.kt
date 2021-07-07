@@ -1,10 +1,11 @@
-package com.droppyn.database.entity
+package com.droppyn.database.entity.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.droppyn.database.entity.DatabaseSize
 
 @Dao
 interface SizeDao {

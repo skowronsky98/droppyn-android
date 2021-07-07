@@ -7,10 +7,8 @@ import com.droppyn.database.DroppynDatabase
 import com.droppyn.database.entity.DatabaseShoe
 import com.droppyn.database.entity.DatabaseShoesAndBrand
 import com.droppyn.database.entity.asDomainModel
-import com.droppyn.domain.Brand
-import com.droppyn.domain.Media
-import com.droppyn.domain.Shoe
-import com.droppyn.domain.Size
+import com.droppyn.database.entity.databaseUserToDomain
+import com.droppyn.domain.*
 import com.droppyn.network.DroppynApi
 import com.droppyn.network.dto.NetworkBrandContainer
 import com.droppyn.network.dto.asDatabaseModel
@@ -32,6 +30,14 @@ class DroppynRepository(private val database: DroppynDatabase) {
     val sizechart: LiveData<List<Size>> = Transformations.map(database.sizeAndBrandDao.getSizeAndBrands()){
             it.asDomainModel()
         }
+
+    val users: LiveData<List<User>> = Transformations.map(database.userAndSizeDao.getUsersAndSize()){
+        it.asDomainModel()
+    }
+
+//    val user: LiveData<User> = Transformations.map(database.userAndSizeDao.getUserAndSize()){
+//        databaseUserToDomain(it)
+//    }
 
     suspend fun refreshBrands() {
         withContext(Dispatchers.IO){

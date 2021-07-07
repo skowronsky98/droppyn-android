@@ -2,7 +2,6 @@ package com.droppyn.database.entity
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.droppyn.domain.Brand
 import com.droppyn.domain.Shoe
 
 data class DatabaseShoesAndBrand(
@@ -20,11 +19,7 @@ fun List<DatabaseShoesAndBrand>.asDomainModel(): List<Shoe> {
                 Shoe(
                         id = it.shoe.id,
                         model = it.shoe.model,
-                        brand = Brand(
-                                id = it.brand.id,
-                                name = it.brand.name,
-                                media = it.brand.media
-                        ),
+                        brand = databaseBrandtoDomain(it.brand),
                         media = it.shoe.media
                 )
         }
