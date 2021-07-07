@@ -10,6 +10,7 @@ import com.droppyn.database.entity.asDomainModel
 import com.droppyn.domain.Brand
 import com.droppyn.domain.Media
 import com.droppyn.domain.Shoe
+import com.droppyn.domain.Size
 import com.droppyn.network.DroppynApi
 import com.droppyn.network.dto.NetworkBrandContainer
 import com.droppyn.network.dto.asDatabaseModel
@@ -25,6 +26,10 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
     val shoes: LiveData<List<Shoe>> =
         Transformations.map(database.shoesAndBrandDao.getShoesAndBrands()){
+            it.asDomainModel()
+        }
+
+    val sizechart: LiveData<List<Size>> = Transformations.map(database.sizeAndBrandDao.getSizeAndBrands()){
             it.asDomainModel()
         }
 

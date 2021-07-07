@@ -6,13 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.droppyn.database.entity.*
 
-@Database(entities = [DatabaseBrand::class, DatabaseShoe::class], version = 1)
+@Database(entities = [
+    DatabaseBrand::class,
+    DatabaseShoe::class,
+    DatabaseSize::class
+                     ], version = 1)
 abstract class DroppynDatabase : RoomDatabase() {
-    abstract val brandDao : BrandDao
-    abstract val shoeDao : ShoeDao
+    abstract val brandDao: BrandDao
+    abstract val shoeDao: ShoeDao
+    abstract val sizeDao: SizeDao
 
     //relation tables
     abstract val shoesAndBrandDao : ShoesAndBrandDao
+    abstract val sizeAndBrandDao : SizeAndBrandDao
 
 
 }

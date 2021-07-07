@@ -44,10 +44,14 @@ class HomeFragment : Fragment() {
 //        brands.forEach { Log.i("room",it.name) }
 //    })
 
-      homeViewModel.getShoes().observe(viewLifecycleOwner, { shoes ->
-        shoes.forEach { Log.i("room",it.model+" "+ it.brand.name) }
-    })
+//      homeViewModel.getShoes().observe(viewLifecycleOwner, { shoes ->
+//        shoes.forEach { Log.i("room",it.model+" "+ it.brand.name) }
+//    })
 
+
+    homeViewModel.getSizeChart().observe(viewLifecycleOwner, { size ->
+      size.forEach { Log.i("room",it.us.toString()+" " + it.brand.name) }
+    })
 
 //      homeViewModel.getShoesAndBrand().observe(viewLifecycleOwner, { shoes ->
 //        shoes.forEach { Log.i("room",it.shoe.model + " ") }

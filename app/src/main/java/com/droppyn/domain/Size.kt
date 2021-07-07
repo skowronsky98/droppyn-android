@@ -6,5 +6,5 @@ data class Size (
 	val uk : Double,
 	val eu : String,
 	val type : String,
-	val brandId : String
+	val brand : Brand
 )
