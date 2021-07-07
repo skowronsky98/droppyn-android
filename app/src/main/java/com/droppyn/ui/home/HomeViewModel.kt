@@ -3,9 +3,11 @@ package com.droppyn.ui.home
 import android.app.Application
 import androidx.lifecycle.*
 import com.droppyn.database.entity.DatabaseBrand
+import com.droppyn.database.entity.DatabaseShoesAndBrand
 import com.droppyn.database.getDatabase
 import com.droppyn.domain.Brand
 import com.droppyn.domain.Media
+import com.droppyn.domain.Shoe
 import com.droppyn.repository.DroppynRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,6 +31,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun refreshData() {
         viewModelScope.launch {
             droppynRepository.refreshBrands()
+            droppynRepository.addShoe()
 
 //            _text.value = droppynRepository.brands.value?.size.toString()
 //            _properties = personalTrainerRepository.advertisments
@@ -36,6 +39,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getBrands(): LiveData<List<Brand>> = droppynRepository.brands
+    fun getShoes(): LiveData<List<Shoe>> = droppynRepository.shoes
+
 
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

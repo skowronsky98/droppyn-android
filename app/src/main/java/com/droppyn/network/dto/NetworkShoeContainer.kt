@@ -4,6 +4,6 @@ data class ShoeDTO (
 
 	val id : String,
 	val model : String,
-	val brand : BrandDTO,
+	val brandId : String,
 	val media : MediaDTO
 )

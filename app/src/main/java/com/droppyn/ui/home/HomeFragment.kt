@@ -40,9 +40,19 @@ class HomeFragment : Fragment() {
     binding.homeViewModel = homeViewModel
 
 
-    homeViewModel.getBrands().observe(viewLifecycleOwner, { brands ->
-        brands.forEach { Log.i("room",it.name) }
+//    homeViewModel.getBrands().observe(viewLifecycleOwner, { brands ->
+//        brands.forEach { Log.i("room",it.name) }
+//    })
+
+      homeViewModel.getShoes().observe(viewLifecycleOwner, { shoes ->
+        shoes.forEach { Log.i("room",it.model+" "+ it.brand.name) }
     })
+
+
+//      homeViewModel.getShoesAndBrand().observe(viewLifecycleOwner, { shoes ->
+//        shoes.forEach { Log.i("room",it.shoe.model + " ") }
+//    })
+
 
     return binding.root
   }
