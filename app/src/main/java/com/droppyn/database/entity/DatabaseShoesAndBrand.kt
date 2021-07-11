@@ -24,3 +24,12 @@ fun List<DatabaseShoesAndBrand>.asDomainModel(): List<Shoe> {
                 )
         }
 }
+
+fun databaseShoesAndBrandToDomain(it: DatabaseShoesAndBrand): Shoe{
+        return Shoe(
+                id = it.shoe.id,
+                model = it.shoe.model,
+                brand = databaseBrandtoDomain(it.brand),
+                media = it.shoe.media
+        )
+}

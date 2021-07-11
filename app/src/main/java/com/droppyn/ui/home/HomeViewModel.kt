@@ -29,7 +29,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private fun refreshData() {
         viewModelScope.launch {
             droppynRepository.refreshBrands()
-            droppynRepository.addShoe()
+            droppynRepository.addTestDataToDatabase()
 
 //            _text.value = droppynRepository.brands.value?.size.toString()
 //            _properties = personalTrainerRepository.advertisments
@@ -40,6 +40,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun getShoes(): LiveData<List<Shoe>> = droppynRepository.shoes
     fun getSizeChart(): LiveData<List<Size>> = droppynRepository.sizechart
     fun getUsers(): LiveData<List<User>> = droppynRepository.users
+    fun getOffers(): LiveData<List<Offer>> = droppynRepository.offers
 
 
 

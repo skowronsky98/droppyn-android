@@ -3,7 +3,7 @@ package com.droppyn.domain
 data class Offer (
 
 	val id : String,
-	val price : Int,
+	val price : Double,
 	val active : Boolean,
 	val deleted : Boolean,
 	val bio : String,

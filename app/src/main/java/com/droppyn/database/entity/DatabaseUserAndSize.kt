@@ -32,7 +32,7 @@ fun List<DatabaseUserAndSize>.asDomainModel(): List<User> {
     }
 }
 
-fun databaseUserToDomain(it: DatabaseUserAndSize): User{
+fun databaseUserAndSizeToDomain(it: DatabaseUserAndSize): User{
     return User(
             id = it.user.id,
             username = it.user.username,

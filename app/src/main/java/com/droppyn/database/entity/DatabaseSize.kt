@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class DatabaseSize (
         @PrimaryKey
         val id : String,
-        val us : Int,
+        val us : Double,
         val uk : Double,
         val eu : String,
         val type : String,
