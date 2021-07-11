@@ -12,7 +12,7 @@ interface UserAndSizeDao {
     @Query("SELECT * FROM user")
     fun getUsersAndSize(): LiveData<List<DatabaseUserAndSize>>
 
-//    @Transaction
-//    @Query("SELECT * FROM user limit 1")
-//    fun getUserAndSize(): LiveData<DatabaseUserAndSize>
+    @Transaction
+    @Query("SELECT * FROM user limit 1")
+    fun getUserAndSize(): DatabaseUserAndSize?
 }

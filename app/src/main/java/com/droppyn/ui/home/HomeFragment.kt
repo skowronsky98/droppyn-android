@@ -58,11 +58,17 @@ class HomeFragment : Fragment() {
 //    })
 
 
-    homeViewModel.getOffers().observe(viewLifecycleOwner, { offers ->
-      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
-    })
+//    homeViewModel.getOffers().observe(viewLifecycleOwner, { offers ->
+//      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
+//    })
 
+//    homeViewModel.getMyOffers().observe(viewLifecycleOwner, { offers ->
+//      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
+//    })
 
+//    homeViewModel.getMyOffers().observe(viewLifecycleOwner, { offers ->
+//      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
+//    })
 
 //      homeViewModel.getShoesAndBrand().observe(viewLifecycleOwner, { shoes ->
 //        shoes.forEach { Log.i("room",it.shoe.model + " ") }

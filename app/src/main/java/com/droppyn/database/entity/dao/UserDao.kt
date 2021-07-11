@@ -13,7 +13,7 @@ interface UserDao {
     fun getUsers(): LiveData<List<DatabaseUser>>
 
     @Query("select * from user limit 1")
-    fun getUser(): LiveData<DatabaseUser>
+    fun getUser(): DatabaseUser
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(databaseUser: DatabaseUser)

@@ -55,5 +55,16 @@ class TestUtil {
                 idSize = createDatabaseSize().id,
                 idUser = createDatabseUser().id
         )
+
+        fun createDatabaseMyOffer(): DatabaseMyOffer = DatabaseMyOffer(
+                id = "1myoffer",
+                price = 10021.0,
+                active = true,
+                deleted = false,
+                bio = "kox but",
+                idShoe = createDatabaseShoe().id,
+                idSize = createDatabaseSize().id,
+                idUser = createDatabseUser().id
+        )
     }
 }
