@@ -31,11 +31,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             droppynRepository.refreshBrands()
             droppynRepository.refreshSheos()
             droppynRepository.refreshSizeChart()
+            droppynRepository.refreshUser()
+            droppynRepository.refreshOffers()
+            droppynRepository.refreshMyOffers()
 
 
 //            droppynRepository.addTestDataToDatabase()
 
-//            droppynRepository.getUser()?.let { Log.i("room", it.firstname) }
+            droppynRepository.getUser()?.let { Log.i("room", it.surname) }
 
 
 //            Log.i("room",getUser().email)

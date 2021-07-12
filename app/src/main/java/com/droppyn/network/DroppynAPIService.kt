@@ -1,8 +1,6 @@
 package com.droppyn.network
 
-import com.droppyn.network.dto.BrandDTO
-import com.droppyn.network.dto.ShoeDTO
-import com.droppyn.network.dto.SizeDTO
+import com.droppyn.network.dto.*
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -32,6 +30,17 @@ interface DroppynAPIService {
 
     @GET("sizechart/all")
     suspend fun getSizeChartProperties(): List<SizeDTO>
+
+    @GET("user")
+    suspend fun getUserProperties(@Query("id") id: String): UserDTO
+
+
+    @GET("offer/all")
+    suspend fun getOffersProperties(): List<OfferDTO>
+
+
+    @GET("offer/myoffer/all")
+    suspend fun getMyOffersProperties(@Query("userId") idUser: String): List<MyOfferDTO>
 
 //    @GET("mentee")
 //    suspend fun getMentee(@Query("email") email : String) : MenteeDTO

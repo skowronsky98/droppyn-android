@@ -9,10 +9,7 @@ import com.droppyn.database.entity.asDomainModel
 import com.droppyn.database.entity.databaseUserAndSizeToDomain
 import com.droppyn.domain.*
 import com.droppyn.network.DroppynApi
-import com.droppyn.network.dto.NetworkBrandContainer
-import com.droppyn.network.dto.NetworkShoeContainer
-import com.droppyn.network.dto.NetworkSizeContainer
-import com.droppyn.network.dto.asDatabaseModel
+import com.droppyn.network.dto.*
 import com.droppyn.uitl.TestUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -94,6 +91,51 @@ class DroppynRepository(private val database: DroppynDatabase) {
 //                    sizechart.forEach { Log.i("retrofit",it.model) }
                 }
                 database.sizeDao.insertAll(*NetworkSizeContainer(sizechart).asDatabaseModel())
+            } catch (e: Exception){
+                Log.i("retrofit",e.message.toString())
+            }
+        }
+    }
+
+    suspend fun refreshUser(){
+        withContext(Dispatchers.IO){
+            try {
+                val user = DroppynApi.retrofitService.getUserProperties("609ed22c98cb1221fdbecea7")
+                if(user != null) {
+                    database.userDao.deleteAll()
+//                    Log.i("retrofit",user.surname)
+                }
+                database.userDao.insert(NetworkUserContainer(user).asDatabaseModel())
+            } catch (e: Exception){
+                Log.i("retrofit",e.message.toString())
+            }
+        }
+    }
+
+    suspend fun refreshOffers(){
+        withContext(Dispatchers.IO){
+            try {
+                val offers = DroppynApi.retrofitService.getOffersProperties()
+                if(offers.isNotEmpty()) {
+                    database.offerDao.deleteAll()
+//                    offers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
+                }
+                database.offerDao.insertAll(*NetworkOfferContainer(offers).asDatabaseModel())
+            } catch (e: Exception){
+                Log.i("retrofit",e.message.toString())
+            }
+        }
+    }
+
+    suspend fun refreshMyOffers(){
+        withContext(Dispatchers.IO){
+            try {
+                val myOffers = DroppynApi.retrofitService.getMyOffersProperties("609ed22c98cb1221fdbecea7")
+                if(myOffers.isNotEmpty()) {
+                    database.myOfferDao.deleteAll()
+                    myOffers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
+                }
+                database.myOfferDao.insertAll(*NetworkMyOfferContainer(myOffers).asDatabaseModel())
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
             }

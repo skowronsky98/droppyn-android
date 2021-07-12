@@ -8,5 +8,5 @@ data class User (
 	val surname : String,
 	val phone : Int,
 	val photoURL : String,
-	val defultSize : Size
+	val defultSize : Size?
 )

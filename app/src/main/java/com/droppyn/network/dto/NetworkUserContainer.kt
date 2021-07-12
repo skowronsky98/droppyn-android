@@ -16,6 +16,20 @@ data class UserDTO (
 	val surname : String,
 	val phone : Int,
 	val photoURL : String,
-	val defultSize : String
+	val defultSize : SizeDTO?
 )
+
+fun NetworkUserContainer.asDatabaseModel(): DatabaseUser {
+	return DatabaseUser(
+			id = user.id,
+			username = user.username,
+			email = user.email,
+			firstname = user.firstname,
+			surname = user.surname,
+			phone = user.phone,
+			photoURL = user.photoURL,
+			idDefultSize = user.defultSize?.id.toString()
+		)
+
+}
 

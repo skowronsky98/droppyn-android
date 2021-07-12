@@ -16,16 +16,5 @@ data class DatabaseUser (
         val photoURL : String,
         val idDefultSize : String
 )
-//fun List<DatabaseUser>.asDomainModel(): List<User> {
-//        return map{
-//                User(
-//                        id = it.id,
-//                        username = it.username
-//                        email = it.email,
-//                        firstname = it.firstname,
-//                        surname = it.surname,
-//
-//                )
-//
-//        }
-//}
+
+

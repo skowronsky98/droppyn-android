@@ -2,8 +2,6 @@ package com.droppyn.database.entity
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.droppyn.domain.Brand
-import com.droppyn.domain.Size
 import com.droppyn.domain.User
 
 data class DatabaseUserAndSize (
@@ -14,7 +12,7 @@ data class DatabaseUserAndSize (
                 parentColumn = "idDefultSize",
                 entityColumn = "id",
         )
-        val defultSize: DatabaseSizeAndBrand
+        val defultSize: DatabaseSizeAndBrand?
 )
 
 fun List<DatabaseUserAndSize>.asDomainModel(): List<User> {
@@ -27,7 +25,7 @@ fun List<DatabaseUserAndSize>.asDomainModel(): List<User> {
                 surname = it.user.surname,
                 phone = it.user.phone,
                 photoURL = it.user.photoURL,
-                defultSize = databseSizeAndBrandToDomain(it.defultSize)
+                defultSize = it.defultSize?.let { size -> databseSizeAndBrandToDomain(size) }
         )
     }
 }
@@ -41,6 +39,6 @@ fun databaseUserAndSizeToDomain(it: DatabaseUserAndSize): User{
             surname = it.user.surname,
             phone = it.user.phone,
             photoURL = it.user.photoURL,
-            defultSize = databseSizeAndBrandToDomain(it.defultSize)
+            defultSize = it.defultSize?.let { size -> databseSizeAndBrandToDomain(size) }
     )
 }
