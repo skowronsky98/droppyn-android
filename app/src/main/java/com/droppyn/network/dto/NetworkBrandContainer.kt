@@ -17,20 +17,6 @@ data class BrandDTO (
 	val media : MediaDTO
 )
 
-fun NetworkBrandContainer.asDomainModel(): List<Brand> {
-	return brands.map {
-		Brand(
-			id = it.id,
-			name = it.name,
-			media = Media(
-				it.media.imageUrl,
-				it.media.smallImageUrl,
-				it.media.thumbUrl
-			)
-		)
-	}
-}
-
 fun NetworkBrandContainer.asDatabaseModel(): Array<DatabaseBrand> {
 	return brands.map {
 		DatabaseBrand(
@@ -43,4 +29,16 @@ fun NetworkBrandContainer.asDatabaseModel(): Array<DatabaseBrand> {
 			)
 		)
 	}.toTypedArray()
+}
+
+fun toDatabaseBrand(it: BrandDTO): DatabaseBrand {
+	return 	DatabaseBrand(
+		id = it.id,
+		name = it.name,
+		media = Media(
+			it.media.imageUrl,
+			it.media.smallImageUrl,
+			it.media.thumbUrl
+		)
+	)
 }

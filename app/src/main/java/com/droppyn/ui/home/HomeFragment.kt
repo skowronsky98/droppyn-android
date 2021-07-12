@@ -18,7 +18,6 @@ import java.lang.Exception
 
 class HomeFragment : Fragment() {
 
-//  private lateinit var homeViewModel: HomeViewModel
 
   private val homeViewModel: HomeViewModel by lazy {
     val activity = requireNotNull(this.activity) {
@@ -39,40 +38,7 @@ class HomeFragment : Fragment() {
     binding.lifecycleOwner = this
     binding.homeViewModel = homeViewModel
 
-
-//    homeViewModel.getBrands().observe(viewLifecycleOwner, { brands ->
-//        brands.forEach { Log.i("room",it.name) }
-//    })
-
-//      homeViewModel.getShoes().observe(viewLifecycleOwner, { shoes ->
-//        shoes.forEach { Log.i("room",it.model+" "+ it.brand.name) }
-//    })
-
-
-//    homeViewModel.getSizeChart().observe(viewLifecycleOwner, { size ->
-//      size.forEach { Log.i("room",it.us.toString()+" " + it.brand.name) }
-//    })
-
-//    homeViewModel.getUsers().observe(viewLifecycleOwner, { user ->
-//      user.forEach { Log.i("room",it.email+" " + it.defultSize) }
-//    })
-
-
-//    homeViewModel.getOffers().observe(viewLifecycleOwner, { offers ->
-//      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
-//    })
-
-//    homeViewModel.getMyOffers().observe(viewLifecycleOwner, { offers ->
-//      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
-//    })
-
-//    homeViewModel.getMyOffers().observe(viewLifecycleOwner, { offers ->
-//      offers.forEach { Log.i("room", it.shoe.model + " " + it.price + " " + it.size.us + " " + it.user.username) }
-//    })
-
-//      homeViewModel.getShoesAndBrand().observe(viewLifecycleOwner, { shoes ->
-//        shoes.forEach { Log.i("room",it.shoe.model + " ") }
-//    })
+    binding.myOffersRecyclerView.adapter = MyOffersAdapter()
 
 
     return binding.root

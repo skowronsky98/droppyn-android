@@ -33,3 +33,14 @@ fun NetworkSizeContainer.asDatabaseModel(): Array<DatabaseSize> {
 		)
 	}.toTypedArray()
 }
+
+fun toDatabaseSize(it: SizeDTO): DatabaseSize{
+	return DatabaseSize(
+		id = it.id,
+		us = it.us,
+		uk = it.uk,
+		eu = it.eu,
+		type = it.type,
+		brandId = it.brandId
+	)
+}

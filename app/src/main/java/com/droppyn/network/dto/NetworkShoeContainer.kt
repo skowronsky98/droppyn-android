@@ -32,3 +32,16 @@ fun NetworkShoeContainer.asDatabaseModel(): Array<DatabaseShoe> {
 		)
 	}.toTypedArray()
 }
+
+fun toDatabaseShoe(it: ShoeDTO): DatabaseShoe{
+	return DatabaseShoe(
+		id = it.id,
+		model = it.model,
+		brandId = it.brand.id,
+		media = Media(
+			it.media.imageUrl,
+			it.media.smallImageUrl,
+			it.media.thumbUrl
+		)
+	)
+}

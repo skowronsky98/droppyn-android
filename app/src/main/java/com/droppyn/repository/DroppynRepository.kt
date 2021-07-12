@@ -34,7 +34,6 @@ class DroppynRepository(private val database: DroppynDatabase) {
         it.asDomainModel()
     }
 
-
     val offers: LiveData<List<Offer>> = Transformations.map(database.offerAndRelationsDao.getOffersAndRelations()){
         it.asDomainModel()
     }
@@ -100,7 +99,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
     suspend fun refreshUser(){
         withContext(Dispatchers.IO){
             try {
-                val user = DroppynApi.retrofitService.getUserProperties("609ed22c98cb1221fdbecea7")
+                val user = DroppynApi.retrofitService.getUserProperties("609ed26498cb1221fdbecea8")
                 if(user != null) {
                     database.userDao.deleteAll()
 //                    Log.i("retrofit",user.surname)
@@ -119,8 +118,16 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 if(offers.isNotEmpty()) {
                     database.offerDao.deleteAll()
 //                    offers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
+//                    offers.forEach { offerDTO ->
+//                        database.brandDao.insert(toDatabaseBrand(offerDTO.shoe.brand))
+//                        database.shoeDao.insert(toDatabaseShoe(offerDTO.shoe))
+//                        database.sizeDao.insert(toDatabaseSize(offerDTO.size))
+//                    }
+
                 }
                 database.offerDao.insertAll(*NetworkOfferContainer(offers).asDatabaseModel())
+
+
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
             }
@@ -130,12 +137,21 @@ class DroppynRepository(private val database: DroppynDatabase) {
     suspend fun refreshMyOffers(){
         withContext(Dispatchers.IO){
             try {
-                val myOffers = DroppynApi.retrofitService.getMyOffersProperties("609ed22c98cb1221fdbecea7")
+                val myOffers = DroppynApi.retrofitService.getMyOffersProperties("609ed26498cb1221fdbecea8")
                 if(myOffers.isNotEmpty()) {
                     database.myOfferDao.deleteAll()
-                    myOffers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
+//                    myOffers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
+
+                    myOffers.forEach { offerDTO ->
+                        database.brandDao.insert(toDatabaseBrand(offerDTO.shoe.brand))
+                        database.shoeDao.insert(toDatabaseShoe(offerDTO.shoe))
+                        database.sizeDao.insert(toDatabaseSize(offerDTO.size))
+                        database.userDao.insert(NetworkUserContainer(offerDTO.user).asDatabaseModel())
+                    }
+
                 }
                 database.myOfferDao.insertAll(*NetworkMyOfferContainer(myOffers).asDatabaseModel())
+
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
             }
