@@ -118,11 +118,11 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 if(offers.isNotEmpty()) {
                     database.offerDao.deleteAll()
 //                    offers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
-//                    offers.forEach { offerDTO ->
-//                        database.brandDao.insert(toDatabaseBrand(offerDTO.shoe.brand))
-//                        database.shoeDao.insert(toDatabaseShoe(offerDTO.shoe))
-//                        database.sizeDao.insert(toDatabaseSize(offerDTO.size))
-//                    }
+                    offers.forEach { offerDTO ->
+                        database.brandDao.insert(toDatabaseBrand(offerDTO.shoe.brand))
+                        database.shoeDao.insert(toDatabaseShoe(offerDTO.shoe))
+                        database.sizeDao.insert(toDatabaseSize(offerDTO.size))
+                    }
 
                 }
                 database.offerDao.insertAll(*NetworkOfferContainer(offers).asDatabaseModel())

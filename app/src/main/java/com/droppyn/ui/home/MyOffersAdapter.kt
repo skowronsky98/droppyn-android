@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.droppyn.databinding.ItemMyOfferBinding
 import com.droppyn.domain.Offer
 
-class MyOffersAdapter: ListAdapter<Offer,MyOffersAdapter.MyOfferPropertyViewHolder>(DiffCallback) {
+class MyOffersAdapter(val clickListener: MyOfferListener): ListAdapter<Offer,MyOffersAdapter.MyOfferPropertyViewHolder>(DiffCallback) {
 
         class MyOfferPropertyViewHolder (private val binding : ItemMyOfferBinding):
                 RecyclerView.ViewHolder(binding.root){
 
-            fun bind(offer: Offer){
+            fun bind(offer: Offer, clickListener: MyOfferListener){
                 binding.property = offer
+                binding.clickListener = clickListener
                 binding.executePendingBindings()
             }
         }
@@ -36,9 +37,11 @@ class MyOffersAdapter: ListAdapter<Offer,MyOffersAdapter.MyOfferPropertyViewHold
     }
 
     override fun onBindViewHolder(holder: MyOffersAdapter.MyOfferPropertyViewHolder, position: Int) {
-        val advertismentProperty = getItem(position)
-
-        holder.bind(advertismentProperty)
+        holder.bind(getItem(position)!!, clickListener)
     }
 
+}
+
+class MyOfferListener(val clickListener: (myOffer: Offer) -> Unit) {
+    fun onClick(myOffer: Offer) = clickListener(myOffer)
 }

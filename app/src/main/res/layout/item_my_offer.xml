@@ -7,6 +7,9 @@
         <variable
             name="property"
             type="com.droppyn.domain.Offer" />
+        <variable
+            name="clickListener"
+            type="com.droppyn.ui.home.MyOfferListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -18,7 +21,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> clickListener.onClick(property)}">
 
             <ImageView
                 android:id="@+id/offer_image"

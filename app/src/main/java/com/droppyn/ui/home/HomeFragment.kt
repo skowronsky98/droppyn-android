@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentHomeBinding
 import com.droppyn.network.DroppynApi
@@ -28,6 +32,8 @@ class HomeFragment : Fragment() {
 
   private lateinit var binding: FragmentHomeBinding
 
+  private val listViewModel: MyOfferListViewModel by activityViewModels()
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -38,8 +44,17 @@ class HomeFragment : Fragment() {
     binding.lifecycleOwner = this
     binding.homeViewModel = homeViewModel
 
-    binding.myOffersRecyclerView.adapter = MyOffersAdapter()
+    binding.myOffersRecyclerView.adapter = MyOffersAdapter(MyOfferListener { myOffer ->
+      homeViewModel.onMyOfferClicked(myOffer)
+      listViewModel.setItem(myOffer)
 
+    })
+
+    homeViewModel.navigateToMyOffer.observe(viewLifecycleOwner, { myOffer ->
+          myOffer?.let { this.findNavController().navigate(R.id.action_navigation_home_to_myOfferFragment)
+          homeViewModel.onMyOfferNavigated()
+      }
+    })
 
     return binding.root
   }

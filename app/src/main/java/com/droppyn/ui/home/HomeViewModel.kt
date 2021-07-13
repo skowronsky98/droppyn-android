@@ -35,6 +35,19 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    private val _navigateToMyOffer = MutableLiveData<Offer>()
+    val navigateToMyOffer
+        get() = _navigateToMyOffer
+
+
+    fun onMyOfferClicked(offer: Offer) {
+        _navigateToMyOffer.value = offer
+    }
+
+    fun onMyOfferNavigated() {
+        _navigateToMyOffer.value = null
+    }
+
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(HomeViewModel::class.java)) {

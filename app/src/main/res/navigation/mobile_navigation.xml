@@ -9,7 +9,12 @@
         android:id="@+id/navigation_home"
         android:name="com.droppyn.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_navigation_home_to_myOfferFragment"
+            app:destination="@id/myOfferFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_shop"
@@ -28,4 +33,9 @@
         android:name="com.droppyn.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/myOfferFragment"
+        android:name="com.droppyn.ui.myoffer.MyOfferFragment"
+        android:label="fragment_my_offer"
+        tools:layout="@layout/fragment_my_offer" />
 </navigation>
