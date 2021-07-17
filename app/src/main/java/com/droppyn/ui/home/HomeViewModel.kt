@@ -26,26 +26,21 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     private fun refreshData() {
         viewModelScope.launch {
-//            droppynRepository.refreshBrands()
-//            droppynRepository.refreshSheos()
-//            droppynRepository.refreshSizeChart()
-//            droppynRepository.refreshUser()
-//            droppynRepository.refreshOffers()
             droppynRepository.refreshMyOffers()
         }
     }
 
-    private val _navigateToMyOffer = MutableLiveData<Offer>()
-    val navigateToMyOffer
+    private val _navigateToMyOffer = MutableLiveData<Boolean>()
+    val navigateToMyOffer: LiveData<Boolean>
         get() = _navigateToMyOffer
 
 
-    fun onMyOfferClicked(offer: Offer) {
-        _navigateToMyOffer.value = offer
+    fun navigateToMyOffer() {
+        _navigateToMyOffer.value = true
     }
 
     fun onMyOfferNavigated() {
-        _navigateToMyOffer.value = null
+        _navigateToMyOffer.value = false
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

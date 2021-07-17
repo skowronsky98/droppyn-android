@@ -6,7 +6,6 @@ import com.droppyn.domain.Media
 class TestUtil {
 
 
-
     companion object {
 
         fun createDatabseBrand(): DatabaseBrand = DatabaseBrand(

@@ -2,16 +2,14 @@ package com.droppyn.ui.myoffer
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import com.droppyn.R
 import com.droppyn.databinding.FragmentMyOfferBinding
-import com.droppyn.ui.home.MyOfferListViewModel
+import com.droppyn.domain.Offer
+import com.droppyn.ui.home.ListViewModel
 
 class MyOfferFragment : Fragment() {
 
@@ -23,7 +21,7 @@ class MyOfferFragment : Fragment() {
 
     private lateinit var viewModel: MyOfferViewModel
 
-    private val listViewModel: MyOfferListViewModel by activityViewModels()
+    private val listViewModel: ListViewModel<Offer> by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {

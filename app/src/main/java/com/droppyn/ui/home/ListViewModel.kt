@@ -5,11 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.droppyn.domain.Offer
 
-class MyOfferListViewModel: ViewModel() {
-    private val _item = MutableLiveData<Offer>()
-    val item: LiveData<Offer> = _item
+class ListViewModel<T>: ViewModel() {
+    private val _item = MutableLiveData<T>()
+    val item: LiveData<T> = _item
 
-    fun setItem(offer: Offer){
+    fun setItem(offer: T){
         _item.value = offer
     }
 
