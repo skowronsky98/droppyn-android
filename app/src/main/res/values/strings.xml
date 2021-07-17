@@ -8,4 +8,6 @@
     <string name="shoe_image">Shoe Image</string>
     <string name="my_offers">My Offers</string>
     <string name="image_of_a_shoe_offer">Image of a shoe offer</string>
+    <string name="price">Price</string>
+    <string name="save">Save</string>
 </resources>
