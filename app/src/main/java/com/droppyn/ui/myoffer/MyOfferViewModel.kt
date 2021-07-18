@@ -17,16 +17,19 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
     val myOffer: MutableLiveData<Offer> = _myOffer
 
     var price = MutableLiveData<String>()
+    var editable = MutableLiveData<Boolean>(false)
 
     fun setMyOffer(offer: Offer){
         _myOffer.value = offer
 
         price.value = offer.price.toString()
+
     }
 
     fun save(){
         _myOffer.value?.price = price.value?.toDouble() ?: 0.0
         saveData()
+        turnOffEditable()
         //navigateToHomeFragment()
     }
 
@@ -36,13 +39,23 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
         get() = _navToHome
 
     fun navigateToHomeFragment(){
-        Log.i("fun","dziala")
         _navToHome.value = true
-        Log.i("fun","dziala")
     }
 
     fun navigationToHomeFinished(){
         _navToHome.value = false
+    }
+
+    fun editableToggle(){
+        editable.value = editable.value != true
+    }
+
+    fun turnOnEditable(){
+        editable.value = true
+    }
+
+    fun turnOffEditable(){
+        editable.value = false
     }
 
     fun essa(){
@@ -50,7 +63,6 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
     }
 
     private fun saveData() {
-
         viewModelScope.launch {
             _myOffer.value?.let { droppynRepository.addMyOfferToDatabase(it, ::navigateToHomeFragment) }
         }

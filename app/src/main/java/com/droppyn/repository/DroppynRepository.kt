@@ -150,18 +150,20 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
                 }
                 database.myOfferDao.insertAll(*NetworkMyOfferContainer(myOffers).asDatabaseModel())
-
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
             }
         }
+
+
     }
 
 
     suspend fun addMyOfferToDatabase(myOffer: Offer, navListener: () -> Unit ){
         withContext(Dispatchers.IO){
-
             try {
+                database.myOfferDao.insert(offertoDatabaseMyOffer(myOffer))
+
                 val offer = DroppynApi.retrofitService.updateMyOffer(
                         idShoe = myOffer.shoe.id,
                         idUser = myOffer.user.id,
@@ -176,7 +178,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
         }
 
-        navListener()
+//        navListener()
     }
 
     // TODO delete it's just for testing

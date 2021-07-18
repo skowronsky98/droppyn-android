@@ -20,11 +20,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-        refreshData()
+//        refreshData()
     }
 
 
-    private fun refreshData() {
+
+    fun refreshData() {
         viewModelScope.launch {
             droppynRepository.refreshMyOffers()
         }

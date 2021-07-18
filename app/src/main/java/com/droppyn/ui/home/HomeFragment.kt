@@ -26,6 +26,7 @@ class HomeFragment : Fragment() {
 
   private val listViewModel: ListViewModel<Offer> by activityViewModels()
 
+
   override fun onCreateView(
     inflater: LayoutInflater,
     container: ViewGroup?,
@@ -48,8 +49,15 @@ class HomeFragment : Fragment() {
       }
     })
 
+
+
+
+    binding.swipeToRefresh.setOnRefreshListener {
+        homeViewModel.refreshData()
+        binding.swipeToRefresh.isRefreshing = false
+    }
+
     return binding.root
   }
-
 
 }

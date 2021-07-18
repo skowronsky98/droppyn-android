@@ -76,6 +76,7 @@
                     android:gravity="end"
                     android:paddingEnd="8dp"
                     android:textColorHighlight="#EEEBF6"
+                    android:enabled="@{myOfferViewModel.editable}"
                     android:textColorLink="#FFFFFF" />
 
 
@@ -94,9 +95,23 @@
             android:src="@drawable/ic_round_edit_24"
             app:layout_anchor="@id/appBarLayout"
             app:layout_anchorGravity="bottom|right|end"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="64dp"
             android:id="@+id/edit_button"
+            android:onClick="@{() -> myOfferViewModel.editableToggle()}"
             app:fabSize="mini"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{() -> myOfferViewModel.editableToggle()}"
+            android:src="@drawable/ic_round_delete_24"
+            app:backgroundTint="#E91E63"
+            app:fabSize="mini"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|right|end" />
 
 
         <androidx.core.widget.NestedScrollView
@@ -125,7 +140,7 @@
                         android:id="@+id/offer_shoe_model"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="20dp"
                         android:text="@{myOfferViewModel.myOffer.shoe.model}"
                         android:textSize="28sp"
                         android:textStyle="bold"
@@ -139,7 +154,7 @@
                         android:id="@+id/offer_shoe_brand"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="50dp"
+                        android:layout_marginTop="62dp"
                         android:layout_marginBottom="8dp"
                         android:text="@{myOfferViewModel.myOffer.shoe.brand.name}"
                         android:textSize="18sp"
@@ -191,9 +206,12 @@
                         android:hint="@string/price"
                         android:inputType="numberSigned|number|numberDecimal"
                         android:singleLine="true"
+                        android:enabled="@{myOfferViewModel.editable}"
                         android:text="@={myOfferViewModel.price}" />
 
                 </androidx.cardview.widget.CardView>
+
+                <!--                        android:editable="@{myOfferViewModel.editable}"-->
 
 
                 <TextView
@@ -271,6 +289,7 @@
                                         android:layout_marginEnd="18dp"
                                         android:layout_marginBottom="4dp"
                                         android:singleLine="false"
+                                        android:enabled="@{myOfferViewModel.editable}"
                                         android:text="@={myOfferViewModel.myOffer.bio}" />
 
 
@@ -284,14 +303,34 @@
                                     android:layout_marginStart="16dp"
                                     android:layout_marginTop="24dp"
                                     android:layout_marginEnd="16dp"
-                                    android:layout_marginBottom="64dp"
+                                    android:layout_marginBottom="8dp"
                                     android:onClick="@{() -> myOfferViewModel.save()}"
                                     android:text="@string/save"
                                     app:cornerRadius="10dp"
                                     app:layout_constraintTop_toBottomOf="@id/card_bio"
+                                    android:enabled="@{myOfferViewModel.editable}"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"/>
+
+<!--                <Button-->
+<!--                    android:id="@+id/offer_delete"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="16dp"-->
+
+<!--                    android:layout_marginEnd="16dp"-->
+<!--                    android:layout_marginBottom="64dp"-->
+<!--                    android:enabled="@{myOfferViewModel.editable}"-->
+<!--                    android:onClick="@{() -> myOfferViewModel.save()}"-->
+<!--                    android:text="@string/delete"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    app:backgroundTint="@color/delete"-->
+<!--                    app:cornerRadius="10dp"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@id/card_bio" />-->
 
 
             </LinearLayout>
