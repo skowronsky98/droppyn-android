@@ -10,4 +10,6 @@
     <string name="image_of_a_shoe_offer">Image of a shoe offer</string>
     <string name="price">Price</string>
     <string name="save">Save</string>
+    <string name="size">Size</string>
+    <string name="bio">Bio</string>
 </resources>
