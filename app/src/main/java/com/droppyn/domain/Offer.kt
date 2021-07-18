@@ -6,7 +6,7 @@ data class Offer (
         var price : Double,
         val active : Boolean,
         val deleted : Boolean,
-        val bio : String,
+        var bio : String,
         val shoe : Shoe,
         val size : Size,
         val user : User

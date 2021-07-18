@@ -9,160 +9,149 @@
             name="myOfferViewModel"
             type="com.droppyn.ui.myoffer.MyOfferViewModel" />
 
-        <variable
-            name="offer"
-            type="com.droppyn.domain.Offer" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:background="@color/form">
 
         <include
             android:id="@+id/include"
             layout="@layout/shoe_detail"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:shoe="@{myOfferViewModel.myOffer.shoe}" />
 
 
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/price_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/price"
-            app:layout_constraintStart_toStartOf="@+id/card_offer_price"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_offer_price"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-
-            android:layout_marginEnd="16dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/price_text">
-
-            <EditText
-                android:id="@+id/offer_price"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="2dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="4dp"
-                android:autofillHints="@string/price"
-                android:hint="@string/price"
-                android:inputType="numberSigned|number|numberDecimal"
-                android:singleLine="true"
-                android:text="@={myOfferViewModel.price}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include" />
+                android:orientation="vertical">
 
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/price_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/price"/>
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_offer_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
 
-        <TextView
-            android:id="@+id/size_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/size"
-            app:layout_constraintStart_toStartOf="@+id/card_size_picker"
-            app:layout_constraintTop_toBottomOf="@+id/card_offer_price" />
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_size_picker"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="18dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="@+id/card_offer_price"
-            app:layout_constraintStart_toStartOf="@+id/card_offer_price"
-            app:layout_constraintTop_toBottomOf="@+id/size_text">
+                    <EditText
+                        android:id="@+id/offer_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginBottom="4dp"
+                        android:autofillHints="@string/price"
+                        android:hint="@string/price"
+                        android:inputType="numberSigned|number|numberDecimal"
+                        android:singleLine="true"
+                        android:text="@={myOfferViewModel.price}"/>
 
-            <TextView
-                android:id="@+id/offer_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="4dp"
-                android:text="@{Double.toString(myOfferViewModel.myOffer.size.us)}" />
+                </androidx.cardview.widget.CardView>
 
 
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/size_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/size" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_size_picker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="18dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp">
+
+                    <TextView
+                        android:id="@+id/offer_size"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginBottom="4dp"
+                        android:text="@{Double.toString(myOfferViewModel.myOffer.size.us)}" />
 
 
-        <TextView
-            android:id="@+id/bio_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/bio"
-            app:layout_constraintStart_toStartOf="@+id/card_bio"
-            app:layout_constraintTop_toBottomOf="@+id/card_size_picker" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_bio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="18dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="0dp"
-            app:layout_constraintEnd_toEndOf="@+id/card_size_picker"
-            app:layout_constraintStart_toStartOf="@+id/card_size_picker"
-            app:layout_constraintTop_toBottomOf="@+id/bio_text">
-
-            <EditText
-                android:id="@+id/offer_bio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="18dp"
-                android:layout_marginBottom="4dp"
-                android:singleLine="false"
-                android:text="@{myOfferViewModel.myOffer.bio}" />
+                </androidx.cardview.widget.CardView>
 
 
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/bio_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/bio" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_bio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="18dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp">
+
+                    <EditText
+                        android:id="@+id/offer_bio"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="18dp"
+                        android:layout_marginBottom="4dp"
+                        android:singleLine="false"
+                        android:text="@={myOfferViewModel.bio}" />
 
 
-        <Button
-            android:id="@+id/offer_save"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="64dp"
-            android:text="@string/save"
-            android:onClick="@{() -> myOfferViewModel.save()}"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                </androidx.cardview.widget.CardView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <Button
+                    android:id="@+id/offer_save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="64dp"
+                    android:onClick="@{() -> myOfferViewModel.save()}"
+                    android:text="@string/save"
+                    app:cornerRadius="10dp"/>
+            </LinearLayout>
+        </ScrollView>
+
+
+
+
+
+
+
+    </LinearLayout>
 </layout>
