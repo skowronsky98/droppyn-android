@@ -1,22 +1,24 @@
 package com.droppyn.network.dto
 
 import com.droppyn.database.entity.DatabaseUser
+import com.droppyn.domain.Size
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class NetworkUserContainer(val user: UserDTO)
 
 @JsonClass(generateAdapter = true)
-data class UserDTO (
-
-	val id : String,
-	val username : String,
-	val email : String,
-	val firstname : String,
-	val surname : String,
-	val phone : Int,
-	val photoURL : String,
-	val defultSize : SizeDTO?
+data class UserDTO(
+		@Json(name = "id")
+		val id: String,
+        val username: String,
+        val email: String,
+        val firstname: String,
+        val surname: String,
+        val phone: Int,
+        val photoURL: String,
+        val defultSize: Size?
 )
 
 fun NetworkUserContainer.asDatabaseModel(): DatabaseUser {

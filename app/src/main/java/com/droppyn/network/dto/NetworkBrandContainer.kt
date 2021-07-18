@@ -12,7 +12,7 @@ data class NetworkBrandContainer(val brands: List<BrandDTO>)
 @JsonClass(generateAdapter = true)
 data class BrandDTO (
 
-	@Json(name = "id") val id : String,
+	@Json(name = "_id") val id : String,
 	val name : String,
 	val media : MediaDTO
 )

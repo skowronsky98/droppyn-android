@@ -1,6 +1,7 @@
 package com.droppyn.network.dto
 
 import com.droppyn.database.entity.DatabaseOffer
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
@@ -9,6 +10,7 @@ data class NetworkOfferContainer(val offers: List<OfferDTO>)
 
 @JsonClass(generateAdapter = true)
 data class OfferDTO (
+	@Json(name = "_id")
 	val id : String,
 	val price : Double,
 	val active : Boolean,

@@ -12,7 +12,7 @@ data class NetworkShoeContainer(val shoes: List<ShoeDTO>)
 @JsonClass(generateAdapter = true)
 data class ShoeDTO (
 
-		@Json(name = "id") val id : String,
+		@Json(name = "_id") val id : String,
 		val model : String,
 		val brand : BrandDTO,
 		val media : MediaDTO

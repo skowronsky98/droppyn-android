@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.droppyn.database.DroppynDatabase
-import com.droppyn.database.entity.DatabaseShoe
 import com.droppyn.database.entity.asDomainModel
 import com.droppyn.database.entity.databaseUserAndSizeToDomain
 import com.droppyn.domain.*
@@ -156,6 +155,28 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 Log.i("retrofit",e.message.toString())
             }
         }
+    }
+
+
+    suspend fun addMyOfferToDatabase(myOffer: Offer, navListener: () -> Unit ){
+        withContext(Dispatchers.IO){
+
+            try {
+                val offer = DroppynApi.retrofitService.updateMyOffer(
+                        idShoe = myOffer.shoe.id,
+                        idUser = myOffer.user.id,
+                        idSize = myOffer.size.id,
+                        myOfferDTO = offertoDTOMyOffer(myOffer)
+                )
+                database.myOfferDao.insert(myOfferDTOtoDatabaseModel(offer))
+
+            }catch (e: Exception){
+                Log.i("retrofit",e.message.toString())
+            }
+
+        }
+
+        navListener()
     }
 
     // TODO delete it's just for testing

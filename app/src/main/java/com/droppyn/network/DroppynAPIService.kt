@@ -5,8 +5,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 private const val BASE_LOCALHOST_URL = "http://10.0.2.2:8080/"
@@ -18,7 +17,7 @@ private val moshi = Moshi.Builder()
     .build()
 
 val retrofit: Retrofit = Retrofit.Builder()
-    .baseUrl(BASE_LOCAL_URL)
+    .baseUrl(BASE_LOCALHOST_URL)
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .build()
 
@@ -42,6 +41,12 @@ interface DroppynAPIService {
 
     @GET("offer/myoffer/all")
     suspend fun getMyOffersProperties(@Query("userId") idUser: String): List<MyOfferDTO>
+
+    @PUT("offer/myoffer")
+    suspend fun updateMyOffer(@Query("shoeId") idShoe: String,
+                              @Query("userId") idUser: String,
+                              @Query("sizeId") idSize: String,
+                              @Body myOfferDTO: MyOfferDTO): MyOfferDTO
 
 //    @GET("mentee")
 //    suspend fun getMentee(@Query("email") email : String) : MenteeDTO

@@ -37,5 +37,9 @@
         android:id="@+id/myOfferFragment"
         android:name="com.droppyn.ui.myoffer.MyOfferFragment"
         android:label="fragment_my_offer"
-        tools:layout="@layout/fragment_my_offer" />
+        tools:layout="@layout/fragment_my_offer" >
+        <action
+            android:id="@+id/action_myOfferFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 </navigation>

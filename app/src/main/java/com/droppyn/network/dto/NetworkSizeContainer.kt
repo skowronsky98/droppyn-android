@@ -12,7 +12,7 @@ data class NetworkSizeContainer(val sizechart: List<SizeDTO>)
 
 @JsonClass(generateAdapter = true)
 data class SizeDTO (
-		@Json(name = "id") val id : String,
+		@Json(name = "_id") val id : String,
 		val us : Double,
 		val uk : Double,
 		val eu : String,

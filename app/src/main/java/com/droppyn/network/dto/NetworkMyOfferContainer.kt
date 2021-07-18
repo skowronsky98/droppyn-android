@@ -1,6 +1,7 @@
 package com.droppyn.network.dto
 
 import com.droppyn.database.entity.DatabaseMyOffer
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
@@ -9,6 +10,7 @@ data class NetworkMyOfferContainer(val myOffers: List<MyOfferDTO>)
 
 @JsonClass(generateAdapter = true)
 data class MyOfferDTO (
+        @Json(name = "_id")
         val id : String,
         val price : Double,
         val active : Boolean,
@@ -32,4 +34,17 @@ fun NetworkMyOfferContainer.asDatabaseModel(): Array<DatabaseMyOffer> {
                 idUser = it.user.id
         )
     }.toTypedArray()
+}
+
+fun myOfferDTOtoDatabaseModel(it: MyOfferDTO): DatabaseMyOffer {
+    return DatabaseMyOffer(
+                id = it.id,
+                price = it.price,
+                active = it.active,
+                deleted = it.deleted,
+                bio = it.bio,
+                idShoe = it.shoe.id,
+                idSize = it.size.id,
+                idUser = it.user.id
+        )
 }
