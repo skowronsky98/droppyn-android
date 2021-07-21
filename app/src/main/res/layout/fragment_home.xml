@@ -108,7 +108,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintVertical_bias="1.0"
-                tools:listitem="@layout/item_my_offer" />
+                tools:listitem="@layout/item_offer" />
 
 
 

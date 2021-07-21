@@ -20,7 +20,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-//        refreshData()
+        refreshData()
     }
 
 

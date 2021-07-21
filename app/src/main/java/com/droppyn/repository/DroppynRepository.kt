@@ -122,6 +122,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
                         database.brandDao.insert(toDatabaseBrand(offerDTO.shoe.brand))
                         database.shoeDao.insert(toDatabaseShoe(offerDTO.shoe))
                         database.sizeDao.insert(toDatabaseSize(offerDTO.size))
+                        database.userDao.insert(NetworkUserContainer(offerDTO.user).asDatabaseModel())
                     }
 
                 }

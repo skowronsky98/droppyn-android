@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.droppyn.R
 import com.droppyn.databinding.FragmentShopBinding
 import com.droppyn.domain.Shoe
 import com.droppyn.ui.home.ListViewModel
@@ -32,12 +34,18 @@ class ShopFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.shopViewModel = shopViewModel
 
-        //TODO add listener
+        //TODO navigation
         binding.shoeRecyclerView.adapter = ShopAdapter(ShoeListener { shoe ->
             listViewModel.setItem(shoe)
-
+            shopViewModel.navigateToOffers()
         })
 
+        shopViewModel.navigateToOffers.observe(viewLifecycleOwner, { nav ->
+            if(nav) {
+                findNavController().navigate(R.id.action_navigation_shop_to_offersFragment)
+                shopViewModel.onOffersNavigated()
+            }
+        })
 
 
         return binding.root

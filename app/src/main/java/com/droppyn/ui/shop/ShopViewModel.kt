@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.droppyn.database.getDatabase
 import com.droppyn.repository.DroppynRepository
-import com.droppyn.ui.home.HomeViewModel
 import kotlinx.coroutines.launch
 
 class ShopViewModel(application: Application) : AndroidViewModel(application) {
@@ -24,6 +23,19 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             droppynRepository.refreshSheos()
         }
+    }
+
+    private val _navigateToOffers = MutableLiveData<Boolean>()
+    val navigateToOffers: LiveData<Boolean>
+        get() = _navigateToOffers
+
+
+    fun navigateToOffers() {
+        _navigateToOffers.value = true
+    }
+
+    fun onOffersNavigated() {
+        _navigateToOffers.value = false
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

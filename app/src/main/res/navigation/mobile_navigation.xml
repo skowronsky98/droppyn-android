@@ -20,7 +20,11 @@
         android:id="@+id/navigation_shop"
         android:name="com.droppyn.ui.shop.ShopFragment"
         android:label="@string/title_shop"
-        tools:layout="@layout/fragment_shop"/>
+        tools:layout="@layout/fragment_shop">
+        <action
+            android:id="@+id/action_navigation_shop_to_offersFragment"
+            app:destination="@id/offersFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_chat"
@@ -42,4 +46,8 @@
             android:id="@+id/action_myOfferFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </fragment>
+    <fragment
+        android:id="@+id/offersFragment"
+        android:name="com.droppyn.ui.offers.OffersFragment"
+        android:label="OffersFragment" />
 </navigation>
