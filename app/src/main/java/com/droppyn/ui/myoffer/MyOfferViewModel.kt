@@ -33,6 +33,11 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
         //navigateToHomeFragment()
     }
 
+    fun delete(){
+        deleteMyOffer()
+        navigateToHomeFragment()
+    }
+
 
     private val _navToHome = MutableLiveData<Boolean>()
     val navToHome : LiveData<Boolean>
@@ -60,6 +65,12 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
 
     fun essa(){
         Log.i("fun","dziala")
+    }
+
+    private fun deleteMyOffer(){
+        viewModelScope.launch {
+            _myOffer.value?.let { droppynRepository.deleteMyOffer(it) }
+        }
     }
 
     private fun saveData() {

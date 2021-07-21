@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            android:onClick="@{() -> myOfferViewModel.editableToggle()}"
+            android:onClick="@{() -> myOfferViewModel.delete()}"
             android:src="@drawable/ic_round_delete_24"
             app:backgroundTint="#E91E63"
             app:fabSize="mini"

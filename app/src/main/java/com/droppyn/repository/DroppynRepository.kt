@@ -1,6 +1,7 @@
 package com.droppyn.repository
 
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.droppyn.database.DroppynDatabase
@@ -152,6 +153,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 database.myOfferDao.insertAll(*NetworkMyOfferContainer(myOffers).asDatabaseModel())
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
+
             }
         }
 
@@ -179,6 +181,19 @@ class DroppynRepository(private val database: DroppynDatabase) {
         }
 
 //        navListener()
+    }
+
+    suspend fun deleteMyOffer(myOffer: Offer){
+        withContext(Dispatchers.IO){
+            try {
+
+                DroppynApi.retrofitService.deleteMyOffer(myOffer.id, myOffer.user.id)
+                database.myOfferDao.deleteById(myOffer.id)
+            }catch (e: Exception){
+                Log.i("retrofit",e.message.toString())
+            }
+
+        }
     }
 
     // TODO delete it's just for testing

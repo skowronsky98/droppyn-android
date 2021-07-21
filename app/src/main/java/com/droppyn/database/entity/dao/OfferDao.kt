@@ -20,4 +20,7 @@ interface OfferDao {
 
     @Query("DELETE FROM offers")
     fun deleteAll()
+
+    @Query("DELETE FROM offers WHERE id = :id")
+    fun deleteById(id: String)
 }

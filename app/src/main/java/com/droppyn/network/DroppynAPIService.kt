@@ -48,6 +48,11 @@ interface DroppynAPIService {
                               @Query("sizeId") idSize: String,
                               @Body myOfferDTO: MyOfferDTO): MyOfferDTO
 
+    @DELETE(value = "offer/myoffer")
+    suspend fun deleteMyOffer(@Query("id") idMyOffer: String,
+                              @Query("userId") idUser: String)
+
+
 //    @GET("mentee")
 //    suspend fun getMentee(@Query("email") email : String) : MenteeDTO
 }
