@@ -11,9 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.droppyn.databinding.FragmentsOffersBinding
 import com.droppyn.domain.Offer
 import com.droppyn.domain.Shoe
-import com.droppyn.ui.home.ListViewModel
-import com.droppyn.ui.home.MyOfferListener
-import com.droppyn.ui.home.MyOffersAdapter
+import com.droppyn.uitl.ShareDataViewModel
 
 class OffersFragment : Fragment() {
 
@@ -24,8 +22,8 @@ class OffersFragment : Fragment() {
         ViewModelProvider(this, OffersViewModel.Factory(activity.application)).get(OffersViewModel::class.java)
     }
     private lateinit var binding: FragmentsOffersBinding
-    private val listOfShoeViewModel: ListViewModel<Shoe> by activityViewModels()
-    private val listOfOfferViewModel: ListViewModel<Offer> by activityViewModels()
+    private val shareDataOfShoeViewModel: ShareDataViewModel<Shoe> by activityViewModels()
+    private val shareDataOfOfferViewModel: ShareDataViewModel<Offer> by activityViewModels()
 
 
     override fun onCreateView(
@@ -40,13 +38,13 @@ class OffersFragment : Fragment() {
 
 
         //TODO Pass offer to OfferDetailFragment
-        binding.offersRecyclerView.adapter = MyOffersAdapter(MyOfferListener { offer ->
+        binding.offersRecyclerView.adapter = OffersAdapter(OfferListener { offer ->
 //            listOfOfferViewModel.setItem(offer)
 
             Toast.makeText(context,offer.id,Toast.LENGTH_SHORT).show()
         })
 
-        listOfShoeViewModel.item.observe(viewLifecycleOwner, { shoe ->
+        shareDataOfShoeViewModel.item.observe(viewLifecycleOwner, { shoe ->
             offersViewModel.setFilter(shoe)
         })
 

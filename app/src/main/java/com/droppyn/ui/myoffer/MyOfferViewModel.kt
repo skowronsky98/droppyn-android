@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.droppyn.database.getDatabase
 import com.droppyn.domain.Offer
+import com.droppyn.domain.Size
 import com.droppyn.repository.DroppynRepository
 import kotlinx.coroutines.launch
 
@@ -13,10 +14,18 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
     private val database = getDatabase(application)
     private val droppynRepository = DroppynRepository(database)
 
+    val sizeChart = droppynRepository.sizechart
+
     private val _myOffer = MutableLiveData<Offer>()
     val myOffer: MutableLiveData<Offer> = _myOffer
 
     var price = MutableLiveData<String>()
+    var size = MutableLiveData<Size>()
+
+    lateinit var displaySize: Array<String>
+
+//    lateinit var sizeChart =
+
     var editable = MutableLiveData<Boolean>(false)
 
     fun setMyOffer(offer: Offer){
@@ -24,6 +33,7 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
 
         price.value = offer.price.toString()
 
+        size.value = offer.user.defultSize
     }
 
     fun save(){
@@ -77,6 +87,11 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
         viewModelScope.launch {
             _myOffer.value?.let { droppynRepository.addMyOfferToDatabase(it, ::navigateToHomeFragment) }
         }
+    }
+
+    fun setSize(index: Int){
+        sizeChart.value?.get(index).let { size.value = it }
+        size.value?.let { _myOffer.value?.size = it }
     }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.droppyn.databinding.ItemOfferBinding
+import com.droppyn.databinding.ItemMyOfferBinding
 import com.droppyn.domain.Offer
 
 class MyOffersAdapter(val clickListener: MyOfferListener): ListAdapter<Offer,MyOffersAdapter.MyOfferPropertyViewHolder>(DiffCallback) {
 
-        class MyOfferPropertyViewHolder (private val binding : ItemOfferBinding):
+        class MyOfferPropertyViewHolder (private val binding : ItemMyOfferBinding):
                 RecyclerView.ViewHolder(binding.root){
 
             fun bind(offer: Offer, clickListener: MyOfferListener){
@@ -23,17 +23,17 @@ class MyOffersAdapter(val clickListener: MyOfferListener): ListAdapter<Offer,MyO
 
         companion object DiffCallback : DiffUtil.ItemCallback<Offer>() {
         override fun areItemsTheSame(oldItem: Offer, newItem: Offer): Boolean {
-            return oldItem === newItem
+            return oldItem.id === newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Offer, newItem: Offer): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
     }
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyOffersAdapter.MyOfferPropertyViewHolder {
-        return MyOfferPropertyViewHolder(ItemOfferBinding.inflate(LayoutInflater.from(parent.context)))
+        return MyOfferPropertyViewHolder(ItemMyOfferBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
     override fun onBindViewHolder(holder: MyOffersAdapter.MyOfferPropertyViewHolder, position: Int) {

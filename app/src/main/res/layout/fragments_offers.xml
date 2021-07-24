@@ -69,8 +69,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            app:myOffersListData="@{offersViewModel.offers}"
-            tools:listitem="@layout/item_offer" />
+            app:offersListData="@{offersViewModel.offers}"
+            tools:listitem="@layout/item_my_offer" />
 
 
 

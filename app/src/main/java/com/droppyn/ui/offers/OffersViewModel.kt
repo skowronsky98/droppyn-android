@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 class OffersViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getDatabase(application)
     private val droppynRepository = DroppynRepository(database)
-    val offers = droppynRepository.offers
+    var offers = droppynRepository.offers
+
 
     private val _shoe = MutableLiveData<Shoe>()
     val shoe: MutableLiveData<Shoe> = _shoe
@@ -22,6 +23,7 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
     init {
         refreshData()
+
     }
 
 

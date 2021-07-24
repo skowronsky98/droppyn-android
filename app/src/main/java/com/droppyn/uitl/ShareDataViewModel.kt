@@ -1,11 +1,10 @@
-package com.droppyn.ui.home
+package com.droppyn.uitl
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.droppyn.domain.Offer
 
-class ListViewModel<T>: ViewModel() {
+class ShareDataViewModel<T>: ViewModel() {
     private val _item = MutableLiveData<T>()
     val item: LiveData<T> = _item
 

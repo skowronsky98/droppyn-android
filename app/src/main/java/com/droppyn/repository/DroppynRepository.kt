@@ -42,7 +42,9 @@ class DroppynRepository(private val database: DroppynDatabase) {
         it.asDomainModel()
     }
 
-
+    fun getFilteredOffers(shoe: Shoe): LiveData<List<Offer>> = Transformations.map(database.offerAndRelationsDao.getFilteredOffersAndRelations(shoe.id)){
+        it.asDomainModel()
+    }
 
     suspend fun getUser() = withContext(Dispatchers.IO){
         database.userAndSizeDao.getUserAndSize()?.let { databaseUserAndSizeToDomain(it) }

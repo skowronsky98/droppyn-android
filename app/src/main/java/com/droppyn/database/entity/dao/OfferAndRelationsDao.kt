@@ -14,6 +14,10 @@ interface OfferAndRelationsDao {
     fun getOffersAndRelations(): LiveData<List<DatabaseOfferAndRelations>>
 
     @Transaction
+    @Query("SELECT * FROM offers where idShoe=:idShoe")
+    fun getFilteredOffersAndRelations(idShoe: String): LiveData<List<DatabaseOfferAndRelations>>
+
+    @Transaction
     @Query("SELECT * FROM myoffers")
     fun getMyOffersAndRelations(): LiveData<List<DatabaseMyOfferAndRelations>>
 }
