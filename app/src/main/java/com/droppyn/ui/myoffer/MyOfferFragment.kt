@@ -2,7 +2,6 @@ package com.droppyn.ui.myoffer
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentMyOfferBinding
 import com.droppyn.domain.Offer
-import com.droppyn.uitl.ShareDataViewModel
+import com.droppyn.ui.home.ShareDataMyOffersViewModel
 
 class MyOfferFragment : Fragment() {
 
@@ -31,7 +30,7 @@ class MyOfferFragment : Fragment() {
         ViewModelProvider(this, MyOfferViewModel.Factory(activity.application)).get(MyOfferViewModel::class.java)
     }
 
-    private val shareDataViewModel: ShareDataViewModel<Offer> by activityViewModels()
+    private val shareDataMyOffersViewModel: ShareDataMyOffersViewModel<Offer> by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -45,7 +44,7 @@ class MyOfferFragment : Fragment() {
 
 
 
-        shareDataViewModel.item.observe(viewLifecycleOwner, { offer ->
+        shareDataMyOffersViewModel.item.observe(viewLifecycleOwner, { offer ->
             myOfferViewModel.setMyOffer(offer)
         })
 

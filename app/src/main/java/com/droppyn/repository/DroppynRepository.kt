@@ -48,7 +48,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
     suspend fun getUser() = withContext(Dispatchers.IO){
         database.userAndSizeDao.getUserAndSize()?.let { databaseUserAndSizeToDomain(it) }
-        }
+    }
 
 
 

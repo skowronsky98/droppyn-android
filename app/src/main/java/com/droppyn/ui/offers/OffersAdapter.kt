@@ -46,6 +46,6 @@ class OffersAdapter(val clickListener: OfferListener): ListAdapter<Offer, Offers
 
 }
 
-class OfferListener(val clickListener: (myOffer: Offer) -> Unit) {
-    fun onClick(myOffer: Offer) = clickListener(myOffer)
+class OfferListener(val clickListener: (offer: Offer) -> Unit) {
+    fun onClick(offer: Offer) = clickListener(offer)
 }

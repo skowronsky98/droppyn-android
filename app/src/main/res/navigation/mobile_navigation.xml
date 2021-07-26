@@ -49,5 +49,13 @@
     <fragment
         android:id="@+id/offersFragment"
         android:name="com.droppyn.ui.offers.OffersFragment"
-        android:label="OffersFragment" />
+        android:label="OffersFragment" >
+        <action
+            android:id="@+id/action_offersFragment_to_offerDetailFragment"
+            app:destination="@id/offerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerDetailFragment"
+        android:name="com.droppyn.ui.offers.detail.OfferDetailFragment"
+        android:label="OfferDetailFragment" />
 </navigation>

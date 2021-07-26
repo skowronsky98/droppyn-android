@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentHomeBinding
 import com.droppyn.domain.Offer
-import com.droppyn.uitl.ShareDataViewModel
 
 class HomeFragment : Fragment() {
 
@@ -25,7 +24,7 @@ class HomeFragment : Fragment() {
 
   private lateinit var binding: FragmentHomeBinding
 
-  private val shareDataViewModel: ShareDataViewModel<Offer> by activityViewModels()
+  private val shareDataMyOffersViewModel: ShareDataMyOffersViewModel<Offer> by activityViewModels()
 
 
   override fun onCreateView(
@@ -39,7 +38,7 @@ class HomeFragment : Fragment() {
     binding.homeViewModel = homeViewModel
 
     binding.myOffersRecyclerView.adapter = MyOffersAdapter(MyOfferListener { myOffer ->
-        shareDataViewModel.setItem(myOffer)
+        shareDataMyOffersViewModel.setItem(myOffer)
         homeViewModel.navigateToMyOffer()
       })
 

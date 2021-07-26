@@ -10,8 +10,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentShopBinding
-import com.droppyn.domain.Shoe
-import com.droppyn.uitl.ShareDataViewModel
 
 class ShopFragment : Fragment() {
 
@@ -22,7 +20,7 @@ class ShopFragment : Fragment() {
         ViewModelProvider(this, ShopViewModel.Factory(activity.application)).get(ShopViewModel::class.java)
     }
     private lateinit var binding: FragmentShopBinding
-    private val shareDataViewModel: ShareDataViewModel<Shoe> by activityViewModels()
+    private val shareDataShopViewModel: ShareDataShopViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -34,9 +32,8 @@ class ShopFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.shopViewModel = shopViewModel
 
-        //TODO navigation
         binding.shoeRecyclerView.adapter = ShopAdapter(ShoeListener { shoe ->
-            shareDataViewModel.setItem(shoe)
+            shareDataShopViewModel.setItem(shoe)
             shopViewModel.navigateToOffers()
         })
 

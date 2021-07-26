@@ -6,12 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.droppyn.R
 import com.droppyn.databinding.FragmentsOffersBinding
-import com.droppyn.domain.Offer
-import com.droppyn.domain.Shoe
-import com.droppyn.uitl.ShareDataViewModel
+import com.droppyn.ui.shop.ShareDataShopViewModel
 
 class OffersFragment : Fragment() {
 
@@ -22,8 +21,7 @@ class OffersFragment : Fragment() {
         ViewModelProvider(this, OffersViewModel.Factory(activity.application)).get(OffersViewModel::class.java)
     }
     private lateinit var binding: FragmentsOffersBinding
-    private val shareDataOfShoeViewModel: ShareDataViewModel<Shoe> by activityViewModels()
-    private val shareDataOfOfferViewModel: ShareDataViewModel<Offer> by activityViewModels()
+    private val shareDataShopViewModel: ShareDataShopViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -39,12 +37,18 @@ class OffersFragment : Fragment() {
 
         //TODO Pass offer to OfferDetailFragment
         binding.offersRecyclerView.adapter = OffersAdapter(OfferListener { offer ->
-//            listOfOfferViewModel.setItem(offer)
-
-            Toast.makeText(context,offer.id,Toast.LENGTH_SHORT).show()
+            shareDataShopViewModel.setItem(offer)
+            offersViewModel.navigateToOfferDetail()
         })
 
-        shareDataOfShoeViewModel.item.observe(viewLifecycleOwner, { shoe ->
+        offersViewModel.navToOfferDitail.observe(viewLifecycleOwner, { nav ->
+            if(nav) {
+                findNavController().navigate(R.id.action_offersFragment_to_offerDetailFragment)
+                offersViewModel.navigateToOfferDetailFinished()
+            }
+        })
+
+        shareDataShopViewModel.itemShoe.observe(viewLifecycleOwner, { shoe ->
             offersViewModel.setFilter(shoe)
         })
 

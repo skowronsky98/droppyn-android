@@ -18,6 +18,9 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
     fun setFilter(shoe: Shoe){
         _shoe.value = shoe
+
+        //TODO rework filter
+        offers = droppynRepository.getFilteredOffers(shoe)
     }
 
 
@@ -26,6 +29,17 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
     }
 
+    private val _navToOfferDitail = MutableLiveData<Boolean>()
+    val navToOfferDitail: LiveData<Boolean>
+        get() = _navToOfferDitail
+
+    fun navigateToOfferDetail(){
+        _navToOfferDitail.value = true
+    }
+
+    fun navigateToOfferDetailFinished(){
+        _navToOfferDitail.value = false
+    }
 
     fun refreshData() {
         viewModelScope.launch {
