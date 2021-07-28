@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="form">#EFEDF6</color>
+    <color name="grey">#ECECEC</color>
     <color name="primary">#0A60FE</color>
     <color name="app_bar">#F5F5F5</color>
     <color name="delete">#E91E63</color>

@@ -17,4 +17,8 @@
     <string name="shoes">Shoes</string>
     <string name="offers">Offers</string>
     <string name="profile_image">Profile image</string>
+    <string name="us">US</string>
+    <string name="eur">EUR</string>
+    <string name="uk">UK</string>
+    <string name="usd_sign">$</string>
 </resources>
