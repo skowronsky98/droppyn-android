@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentsOffersBinding
@@ -53,6 +54,12 @@ class OffersFragment : Fragment() {
         })
 
 
+        offersViewModel.navBackToShop.observe(viewLifecycleOwner, { nav ->
+            if(nav){
+                findNavController().navigate(R.id.action_offersFragment_to_navigation_shop)
+                offersViewModel.navBackToShopFinished()
+            }
+        })
 
 
         return binding.root

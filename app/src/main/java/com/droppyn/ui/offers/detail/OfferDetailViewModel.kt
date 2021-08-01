@@ -19,6 +19,18 @@ class OfferDetailViewModel(application: Application) : AndroidViewModel(applicat
     }
 
 
+    private val _navBackToOffers = MutableLiveData<Boolean>()
+    val navBackToOffers: LiveData<Boolean>
+        get() = _navBackToOffers
+
+    fun navBackToOffers(){
+        _navBackToOffers.value = true
+    }
+
+    fun navBackToOffersFinished(){
+        _navBackToOffers.value = false
+    }
+
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(OfferDetailViewModel::class.java)) {

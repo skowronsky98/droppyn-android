@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.droppyn.R
 import com.droppyn.databinding.FragmentOfferDetailBinding
 import com.droppyn.ui.shop.ShareDataShopViewModel
 
@@ -37,6 +39,14 @@ class OfferDetailFragment : Fragment() {
         shareDataShopViewModel.itemOffer.observe(viewLifecycleOwner, {
             Log.i("share",it.id)
             offerDetailViewModel.setOffer(it)
+        })
+
+
+        offerDetailViewModel.navBackToOffers.observe(viewLifecycleOwner,{ nav ->
+            if(nav) {
+                findNavController().navigate(R.id.action_offerDetailFragment_to_offersFragment)
+                offerDetailViewModel.navBackToOffersFinished()
+            }
         })
 
         return binding.root

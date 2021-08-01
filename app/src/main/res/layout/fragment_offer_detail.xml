@@ -54,13 +54,13 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:onClick="@{() -> offerDetailViewModel.navBackToOffers()}"
                         android:src="@drawable/ic_round_arrow_back_ios_24"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
+                        android:onClick="@{() -> offerDetailViewModel.navBackToOffers()}"
                         android:gravity="start"
                         android:textColor="@color/primary"
                         android:text="@string/back"/>

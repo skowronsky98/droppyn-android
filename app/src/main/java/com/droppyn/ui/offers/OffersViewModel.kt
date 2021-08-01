@@ -41,6 +41,19 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
         _navToOfferDitail.value = false
     }
 
+
+    private val _navBackToShop = MutableLiveData<Boolean>()
+    val navBackToShop: LiveData<Boolean>
+        get() = _navBackToShop
+
+    fun navBackToShop(){
+        _navBackToShop.value = true
+    }
+
+    fun navBackToShopFinished(){
+        _navBackToShop.value = false
+    }
+
     fun refreshData() {
         viewModelScope.launch {
             droppynRepository.refreshOffers()

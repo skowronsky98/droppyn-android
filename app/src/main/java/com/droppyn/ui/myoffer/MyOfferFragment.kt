@@ -42,10 +42,11 @@ class MyOfferFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.myOfferViewModel = myOfferViewModel
 
-
+        lateinit var sizeIndex: String
 
         shareDataMyOffersViewModel.item.observe(viewLifecycleOwner, { offer ->
             myOfferViewModel.setMyOffer(offer)
+            sizeIndex = offer.size.id
         })
 
 
@@ -53,6 +54,8 @@ class MyOfferFragment : Fragment() {
             binding.sizePicker.minValue = 0
             binding.sizePicker.maxValue = sizes.size - 1
             binding.sizePicker.displayedValues = sizes.map { size -> size.us.toString() + " US"}.toTypedArray()
+
+            binding.sizePicker.value = sizes.indexOf(sizes.first { size -> size.id.equals(sizeIndex) })
         })
 
         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> myOfferViewModel.setSize(newVal) }
