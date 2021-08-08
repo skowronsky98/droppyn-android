@@ -36,7 +36,7 @@ class OffersFragment : Fragment() {
 
 
 
-        //TODO Pass offer to OfferDetailFragment
+
         binding.offersRecyclerView.adapter = OffersAdapter(OfferListener { offer ->
             shareDataShopViewModel.setItem(offer)
             offersViewModel.navigateToOfferDetail()

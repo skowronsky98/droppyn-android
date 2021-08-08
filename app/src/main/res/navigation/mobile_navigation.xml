@@ -13,7 +13,12 @@
 
         <action
             android:id="@+id/action_navigation_home_to_myOfferFragment"
-            app:destination="@id/myOfferFragment" />
+            app:destination="@id/myOfferFragment"
+            app:popUpTo="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_home_to_addOfferFragment"
+            app:destination="@id/addOfferFragment"
+            app:popUpTo="@id/navigation_home" />
     </fragment>
 
     <fragment
@@ -23,7 +28,8 @@
         tools:layout="@layout/fragment_shop">
         <action
             android:id="@+id/action_navigation_shop_to_offersFragment"
-            app:destination="@id/offersFragment" />
+            app:destination="@id/offersFragment"
+            app:popUpTo="@id/navigation_shop" />
     </fragment>
 
     <fragment
@@ -52,7 +58,8 @@
         android:label="OffersFragment" >
         <action
             android:id="@+id/action_offersFragment_to_offerDetailFragment"
-            app:destination="@id/offerDetailFragment" />
+            app:destination="@id/offerDetailFragment"
+            app:popUpTo="@id/offersFragment" />
         <action
             android:id="@+id/action_offersFragment_to_navigation_shop"
             app:destination="@id/navigation_shop" />
@@ -65,4 +72,20 @@
             android:id="@+id/action_offerDetailFragment_to_offersFragment"
             app:destination="@id/offersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addOfferFragment"
+        android:name="com.droppyn.ui.addoffer.AddOfferFragment"
+        android:label="AddOfferFragment" >
+        <action
+            android:id="@+id/action_addOfferFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_addOfferFragment_to_shoesBottomSheetFragment"
+            app:destination="@id/shoesBottomSheetFragment"
+            app:popUpTo="@id/addOfferFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/shoesBottomSheetFragment"
+        android:name="com.droppyn.ui.shoepicker.ShoesBottomSheetFragment"
+        android:label="ShoesBottomSheetFragment" />
 </navigation>
