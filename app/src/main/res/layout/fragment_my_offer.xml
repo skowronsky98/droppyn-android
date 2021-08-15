@@ -76,7 +76,6 @@
                     android:gravity="end"
                     android:paddingEnd="8dp"
                     android:textColorHighlight="#EEEBF6"
-                    android:enabled="@{myOfferViewModel.editable}"
                     android:textColorLink="#FFFFFF" />
 
 

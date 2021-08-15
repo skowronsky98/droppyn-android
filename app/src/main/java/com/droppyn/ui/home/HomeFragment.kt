@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentHomeBinding
 import com.droppyn.domain.Offer
+import com.droppyn.network.dto.toDatabaseShoe
 
 class HomeFragment : Fragment() {
 
@@ -54,6 +55,12 @@ class HomeFragment : Fragment() {
       }
     })
 
+    homeViewModel.navigateToAddOffer.observe(viewLifecycleOwner, { nav ->
+      if(nav) {
+        findNavController().navigate(R.id.action_navigation_home_to_addOfferFragment)
+        homeViewModel.onAddOfferNavigated()
+      }
+    })
 
 
 

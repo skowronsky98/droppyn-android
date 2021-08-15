@@ -15,9 +15,6 @@ import com.droppyn.ui.home.ShareDataMyOffersViewModel
 
 class MyOfferFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MyOfferFragment()
-    }
 
     private lateinit var binding: FragmentMyOfferBinding
 
