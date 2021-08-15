@@ -6,9 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentAddOfferBinding
+import com.droppyn.domain.Shoe
+import com.droppyn.ui.home.ShareDataMyOffersViewModel
 import com.droppyn.ui.myoffer.MyOfferViewModel
 import com.droppyn.ui.shoepicker.ActionBottom
 
@@ -22,6 +25,8 @@ class AddOfferFragment : Fragment() {
         }
         ViewModelProvider(this, AddOfferViewModel.Factory(activity.application)).get(AddOfferViewModel::class.java)
     }
+
+    private val shareDataShoeViewModel: ShareDataMyOffersViewModel<Shoe> by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -38,10 +43,14 @@ class AddOfferFragment : Fragment() {
             }
         })
 
+        shareDataShoeViewModel.item.observe(viewLifecycleOwner,{ shoe ->
+            addOfferViewModel.setShoe(shoe)
+        })
 
         addOfferViewModel.showShoeBottomSheet.observe(viewLifecycleOwner, { bottomSheet ->
             if(bottomSheet){
                 openShoesBottomSheet()
+                addOfferViewModel.showShoeBottomSheetFinished()
             }
         })
 

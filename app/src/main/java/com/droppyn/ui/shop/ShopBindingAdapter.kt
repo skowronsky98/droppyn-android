@@ -6,6 +6,6 @@ import com.droppyn.domain.Shoe
 
 @BindingAdapter("shoesListData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Shoe>?){
-    val adapter = recyclerView.adapter as ShopAdapter
+    val adapter = recyclerView.adapter as ShoeAdapter
     adapter.submitList(data)
 }

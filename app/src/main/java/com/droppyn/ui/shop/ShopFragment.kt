@@ -32,7 +32,7 @@ class ShopFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.shopViewModel = shopViewModel
 
-        binding.shoeRecyclerView.adapter = ShopAdapter(ShoeListener { shoe ->
+        binding.shoeRecyclerView.adapter = ShoeAdapter(ShoeListener { shoe ->
             shareDataShopViewModel.setItem(shoe)
             shopViewModel.navigateToOffers()
         })

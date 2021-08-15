@@ -24,10 +24,11 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     }
 
 
-
     fun refreshData() {
         viewModelScope.launch {
+            droppynRepository.refreshBrands()
             droppynRepository.refreshMyOffers()
+            droppynRepository.refreshProfile()
         }
     }
 

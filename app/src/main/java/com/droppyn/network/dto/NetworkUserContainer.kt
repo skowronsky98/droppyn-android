@@ -1,5 +1,6 @@
 package com.droppyn.network.dto
 
+import com.droppyn.database.entity.DatabaseProfile
 import com.droppyn.database.entity.DatabaseUser
 import com.droppyn.domain.Size
 import com.squareup.moshi.Json
@@ -35,3 +36,16 @@ fun NetworkUserContainer.asDatabaseModel(): DatabaseUser {
 
 }
 
+fun NetworkUserContainer.asDatabaseProfileModel(): DatabaseProfile {
+	return DatabaseProfile(
+			id = user.id,
+			username = user.username,
+			email = user.email,
+			firstname = user.firstname,
+			surname = user.surname,
+			phone = user.phone,
+			photoURL = user.photoURL,
+			idDefultSize = user.defultSize?.id.toString()
+	)
+
+}

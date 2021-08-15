@@ -52,6 +52,12 @@ interface DroppynAPIService {
     suspend fun deleteMyOffer(@Query("id") idMyOffer: String,
                               @Query("userId") idUser: String)
 
+    @POST("offer/myoffer")
+    suspend fun createMyOffer(@Query("shoeId") idShoe: String,
+                              @Query("userId") idUser: String,
+                              @Query("sizeId") idSize: String,
+                              @Body myOfferDTO: MyOfferDTO): MyOfferDTO
+
 
 //    @GET("mentee")
 //    suspend fun getMentee(@Query("email") email : String) : MenteeDTO

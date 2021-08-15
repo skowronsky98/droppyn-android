@@ -1,19 +1,17 @@
 package com.droppyn.repository
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.droppyn.database.DroppynDatabase
 import com.droppyn.database.entity.asDomainModel
-import com.droppyn.database.entity.databaseUserAndSizeToDomain
+import com.droppyn.database.entity.databaseProfileAndSizeToDomain
 import com.droppyn.domain.*
 import com.droppyn.network.DroppynApi
 import com.droppyn.network.dto.*
 import com.droppyn.uitl.TestUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class DroppynRepository(private val database: DroppynDatabase) {
     val brands: LiveData<List<Brand>> =
@@ -46,8 +44,8 @@ class DroppynRepository(private val database: DroppynDatabase) {
         it.asDomainModel()
     }
 
-    suspend fun getUser() = withContext(Dispatchers.IO){
-        database.userAndSizeDao.getUserAndSize()?.let { databaseUserAndSizeToDomain(it) }
+    suspend fun getProfile() = withContext(Dispatchers.IO){
+        database.userAndSizeDao.getProfileAndSize()?.let { databaseProfileAndSizeToDomain(it) }
     }
 
 
@@ -98,15 +96,15 @@ class DroppynRepository(private val database: DroppynDatabase) {
         }
     }
 
-    suspend fun refreshUser(){
+    suspend fun refreshProfile(){
         withContext(Dispatchers.IO){
             try {
                 val user = DroppynApi.retrofitService.getUserProperties("609ed26498cb1221fdbecea8")
                 if(user != null) {
-                    database.userDao.deleteAll()
+                    database.profileDao.deleteAll()
 //                    Log.i("retrofit",user.surname)
                 }
-                database.userDao.insert(NetworkUserContainer(user).asDatabaseModel())
+                database.profileDao.insert(NetworkUserContainer(user).asDatabaseProfileModel())
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
             }
@@ -163,6 +161,28 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
     }
 
+
+    suspend fun createMyOffer(myOffer: Offer, navListener: () -> Unit ){
+        withContext(Dispatchers.IO){
+            try {
+//                database.myOfferDao.insert(offertoDatabaseMyOffer(myOffer))
+
+                val offer = DroppynApi.retrofitService.createMyOffer(
+                    idShoe = myOffer.shoe.id,
+                    //TODO change user id
+                    idUser = "609ed26498cb1221fdbecea8",
+                    idSize = myOffer.size.id,
+                    myOfferDTO = offertoDTOMyOffer(myOffer)
+                )
+                database.myOfferDao.insert(myOfferDTOtoDatabaseModel(offer))
+
+            }catch (e: Exception){
+                Log.i("retrofit",e.message.toString())
+            }
+
+        }
+        navListener()
+    }
 
     suspend fun addMyOfferToDatabase(myOffer: Offer, navListener: () -> Unit ){
         withContext(Dispatchers.IO){
