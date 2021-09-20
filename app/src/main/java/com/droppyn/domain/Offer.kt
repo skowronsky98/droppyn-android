@@ -47,3 +47,4 @@ fun offertoDTOMyOffer(offer: Offer): MyOfferDTO = MyOfferDTO(
         size = sizeToDTO(offer.size),
         user = userToDTO(offer.user)
 )
+

@@ -4,13 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.droppyn.databinding.FragmentShoesBottomSheetBinding
-import com.droppyn.domain.Offer
-import com.droppyn.domain.Shoe
-import com.droppyn.ui.home.ShareDataMyOffersViewModel
 import com.droppyn.ui.shop.ShoeAdapter
 import com.droppyn.ui.shop.ShoeListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -26,7 +22,7 @@ class ShoesBottomSheetFragment : BottomSheetDialogFragment() {
     }
     private lateinit var binding: FragmentShoesBottomSheetBinding
 
-    private val shareDataShoeViewModel: ShareDataMyOffersViewModel<Shoe> by activityViewModels()
+    private val shareDataShoeViewModel: ShareDataShoeViewModel by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

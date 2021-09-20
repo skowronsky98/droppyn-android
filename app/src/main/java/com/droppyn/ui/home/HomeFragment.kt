@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
 
     homeViewModel.navigateToAddOffer.observe(viewLifecycleOwner, { nav ->
       if(nav) {
-        findNavController().navigate(R.id.action_navigation_home_to_addOfferFragment)
+        findNavController().navigate(R.id.action_navigation_home_to_addOfferFragment2)
         homeViewModel.onAddOfferNavigated()
       }
     })

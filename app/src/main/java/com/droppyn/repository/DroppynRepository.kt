@@ -184,7 +184,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
         navListener()
     }
 
-    suspend fun addMyOfferToDatabase(myOffer: Offer, navListener: () -> Unit ){
+    suspend fun updateMyOffer(myOffer: Offer, navListener: () -> Unit ){
         withContext(Dispatchers.IO){
             try {
                 database.myOfferDao.insert(offertoDatabaseMyOffer(myOffer))

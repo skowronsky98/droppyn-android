@@ -2,6 +2,7 @@ package com.droppyn.ui.addoffer
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,7 @@ import com.droppyn.domain.Shoe
 import com.droppyn.ui.home.ShareDataMyOffersViewModel
 import com.droppyn.ui.myoffer.MyOfferViewModel
 import com.droppyn.ui.shoepicker.ActionBottom
+import com.droppyn.ui.shoepicker.ShareDataShoeViewModel
 
 class AddOfferFragment : Fragment() {
 
@@ -26,7 +28,7 @@ class AddOfferFragment : Fragment() {
         ViewModelProvider(this, AddOfferViewModel.Factory(activity.application)).get(AddOfferViewModel::class.java)
     }
 
-    private val shareDataShoeViewModel: ShareDataMyOffersViewModel<Shoe> by activityViewModels()
+    private val shareDataShoeViewModel: ShareDataShoeViewModel by activityViewModels()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +37,7 @@ class AddOfferFragment : Fragment() {
         binding = FragmentAddOfferBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.addOfferViewModel = addOfferViewModel
+
 
         addOfferViewModel.navToHome.observe(viewLifecycleOwner, { nav ->
             if(nav) {
@@ -45,6 +48,8 @@ class AddOfferFragment : Fragment() {
 
         shareDataShoeViewModel.item.observe(viewLifecycleOwner,{ shoe ->
             addOfferViewModel.setShoe(shoe)
+            Log.i("offer", shoe.model)
+
         })
 
         addOfferViewModel.showShoeBottomSheet.observe(viewLifecycleOwner, { bottomSheet ->
@@ -61,6 +66,16 @@ class AddOfferFragment : Fragment() {
         })
 
         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> addOfferViewModel.setSize(newVal) }
+
+
+        addOfferViewModel.price.observe(viewLifecycleOwner, { price ->
+            addOfferViewModel.setPrice(price.toDouble())
+        })
+
+        addOfferViewModel.bio.observe(viewLifecycleOwner, { bio ->
+            addOfferViewModel.setBio(bio)
+        })
+
 
         return binding.root
     }

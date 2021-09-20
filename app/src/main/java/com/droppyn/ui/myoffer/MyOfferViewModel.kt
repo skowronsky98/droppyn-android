@@ -26,7 +26,6 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
 
 //    lateinit var sizeChart =
 
-    var editable = MutableLiveData<Boolean>(false)
 
     fun setMyOffer(offer: Offer){
         _myOffer.value = offer
@@ -39,8 +38,7 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
     fun save(){
         _myOffer.value?.price = price.value?.toDouble() ?: 0.0
         saveData()
-        turnOffEditable()
-        //navigateToHomeFragment()
+        navigateToHomeFragment()
     }
 
     fun delete(){
@@ -61,18 +59,6 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
         _navToHome.value = false
     }
 
-    fun editableToggle(){
-        editable.value = editable.value != true
-    }
-
-    fun turnOnEditable(){
-        editable.value = true
-    }
-
-    fun turnOffEditable(){
-        editable.value = false
-    }
-
     fun essa(){
         Log.i("fun","dziala")
     }
@@ -85,7 +71,7 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
 
     private fun saveData() {
         viewModelScope.launch {
-            _myOffer.value?.let { droppynRepository.addMyOfferToDatabase(it, ::navigateToHomeFragment) }
+            _myOffer.value?.let { droppynRepository.updateMyOffer(it, ::navigateToHomeFragment) }
         }
     }
 
