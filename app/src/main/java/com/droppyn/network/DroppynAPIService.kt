@@ -28,7 +28,7 @@ interface DroppynAPIService {
     @GET("shoe/all")
     suspend fun getShoesProperties(): List<ShoeDTO>
 
-    @GET("sizechart/all")
+    @GET("sizechart?brandId=6054bd791f943b17604b19a0")
     suspend fun getSizeChartProperties(): List<SizeDTO>
 
     @GET("user")

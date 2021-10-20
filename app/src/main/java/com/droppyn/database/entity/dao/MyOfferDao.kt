@@ -8,7 +8,8 @@ import androidx.room.Query
 import com.droppyn.database.entity.DatabaseMyOffer
 
 @Dao
-interface MyOfferDao {
+interface
+MyOfferDao {
     @Query("select * from myoffers")
     fun getMyOffers(): LiveData<List<DatabaseMyOffer>>
 

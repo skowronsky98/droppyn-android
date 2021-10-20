@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.droppyn.database.getDatabase
 import com.droppyn.domain.Shoe
+import com.droppyn.domain.Size
 import com.droppyn.repository.DroppynRepository
 import kotlinx.coroutines.launch
 
@@ -16,12 +17,21 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
     private val _shoe = MutableLiveData<Shoe>()
     val shoe: MutableLiveData<Shoe> = _shoe
 
+    private val _size = MutableLiveData<Size>()
+    val size: MutableLiveData<Size> = _size
+
     fun setFilter(shoe: Shoe){
         _shoe.value = shoe
 
         //TODO rework filter
         offers = droppynRepository.getFilteredOffers(shoe)
     }
+
+    fun setFilter(size: Size){
+        _size.value = size
+        offers = droppynRepository.getFilteredBySizeOffers(size)
+    }
+
 
 
     init {
@@ -39,6 +49,18 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
     fun navigateToOfferDetailFinished(){
         _navToOfferDitail.value = false
+    }
+
+    private val _navToFilter = MutableLiveData<Boolean>()
+    val navToFilter: LiveData<Boolean>
+        get() = _navToFilter
+
+    fun navigateToFilter(){
+        _navToFilter.value = true
+    }
+
+    fun navigateToFilterFinished(){
+        _navToFilter.value = false
     }
 
 

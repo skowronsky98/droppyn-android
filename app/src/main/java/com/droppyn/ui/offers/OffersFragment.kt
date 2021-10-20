@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentsOffersBinding
+import com.droppyn.ui.offers.filter.ShareFilterDataViewModel
 import com.droppyn.ui.shop.ShareDataShopViewModel
 
 class OffersFragment : Fragment() {
@@ -23,6 +24,7 @@ class OffersFragment : Fragment() {
     }
     private lateinit var binding: FragmentsOffersBinding
     private val shareDataShopViewModel: ShareDataShopViewModel by activityViewModels()
+    private val shareFilterDataViewModel: ShareFilterDataViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -33,8 +35,6 @@ class OffersFragment : Fragment() {
         binding = FragmentsOffersBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.offersViewModel = offersViewModel
-
-
 
 
         binding.offersRecyclerView.adapter = OffersAdapter(OfferListener { offer ->
@@ -53,6 +53,10 @@ class OffersFragment : Fragment() {
             offersViewModel.setFilter(shoe)
         })
 
+        shareFilterDataViewModel.item.observe(viewLifecycleOwner, { filter ->
+            offersViewModel.setFilter(filter)
+        })
+
 
         offersViewModel.navBackToShop.observe(viewLifecycleOwner, { nav ->
             if(nav){
@@ -61,6 +65,12 @@ class OffersFragment : Fragment() {
             }
         })
 
+        offersViewModel.navToFilter.observe(viewLifecycleOwner, { nav ->
+            if(nav){
+                findNavController().navigate(R.id.action_offersFragment_to_filterFragment)
+                offersViewModel.navigateToFilterFinished()
+            }
+        })
 
         return binding.root
     }

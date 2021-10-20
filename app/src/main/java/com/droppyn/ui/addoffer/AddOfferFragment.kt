@@ -48,7 +48,7 @@ class AddOfferFragment : Fragment() {
 
         shareDataShoeViewModel.item.observe(viewLifecycleOwner,{ shoe ->
             addOfferViewModel.setShoe(shoe)
-            Log.i("offer", shoe.model)
+//            Log.i("offer", shoe.model)
 
         })
 
@@ -63,6 +63,7 @@ class AddOfferFragment : Fragment() {
             binding.sizePicker.minValue = 0
             binding.sizePicker.maxValue = sizes.size - 1
             binding.sizePicker.displayedValues = sizes.map { size -> size.us.toString() + " US"}.toTypedArray()
+            addOfferViewModel.setSize(0)
         })
 
         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> addOfferViewModel.setSize(newVal) }

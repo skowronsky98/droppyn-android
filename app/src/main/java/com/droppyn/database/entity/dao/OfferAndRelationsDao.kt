@@ -18,6 +18,10 @@ interface OfferAndRelationsDao {
     fun getFilteredOffersAndRelations(idShoe: String): LiveData<List<DatabaseOfferAndRelations>>
 
     @Transaction
+    @Query("SELECT * FROM offers where idSize=:idSize")
+    fun getFilteredBySizeOffersAndRelations(idSize: String): LiveData<List<DatabaseOfferAndRelations>>
+
+    @Transaction
     @Query("SELECT * FROM myoffers")
     fun getMyOffersAndRelations(): LiveData<List<DatabaseMyOfferAndRelations>>
 }

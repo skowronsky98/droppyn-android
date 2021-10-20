@@ -44,6 +44,10 @@ class DroppynRepository(private val database: DroppynDatabase) {
         it.asDomainModel()
     }
 
+    fun getFilteredBySizeOffers(size: Size): LiveData<List<Offer>> = Transformations.map(database.offerAndRelationsDao.getFilteredOffersAndRelations(size.id)){
+        it.asDomainModel()
+    }
+
     suspend fun getProfile() = withContext(Dispatchers.IO){
         database.userAndSizeDao.getProfileAndSize()?.let { databaseProfileAndSizeToDomain(it) }
     }
@@ -147,7 +151,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
                         database.brandDao.insert(toDatabaseBrand(offerDTO.shoe.brand))
                         database.shoeDao.insert(toDatabaseShoe(offerDTO.shoe))
                         database.sizeDao.insert(toDatabaseSize(offerDTO.size))
-                        database.userDao.insert(NetworkUserContainer(offerDTO.user).asDatabaseModel())
+                        database.profileDao.insert(NetworkUserContainer(offerDTO.user).asDatabaseProfileModel())
                     }
 
                 }

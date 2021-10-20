@@ -23,11 +23,11 @@ data class DatabaseMyOfferAndRelations(
         val size: DatabaseSizeAndBrand,
 
         @Relation(
-                entity = DatabaseUser::class,
+                entity = DatabaseProfile::class,
                 parentColumn = "idUser",
                 entityColumn = "id"
         )
-        val user: DatabaseUserAndSize,
+        val user: DatabaseProfileAndSize,
 )
 
 fun List<DatabaseMyOfferAndRelations>.asDomainModel(): List<Offer> {
@@ -40,7 +40,7 @@ fun List<DatabaseMyOfferAndRelations>.asDomainModel(): List<Offer> {
                 bio = it.myOffer.bio,
                 shoe = databaseShoesAndBrandToDomain(it.shoe),
                 size = databseSizeAndBrandToDomain(it.size),
-                user = databaseUserAndSizeToDomain(it.user)
+                user = databaseProfileAndSizeToDomain(it.user)
         )
     }
 }

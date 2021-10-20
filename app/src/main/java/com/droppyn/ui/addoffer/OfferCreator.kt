@@ -17,7 +17,7 @@ class OfferCreator {
         if(!this::shoe.isInitialized || !this::size.isInitialized || !this::user.isInitialized) return null
 
         return Offer(
-                id = "xxx",
+                id = "",
                 price = price,
                 active = true,
                 deleted = false,
