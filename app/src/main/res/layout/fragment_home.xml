@@ -105,6 +105,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="?attr/actionBarSize"
                 android:paddingTop="?attr/actionBarSize"
+                android:paddingBottom="?attr/actionBarSize"
                 android:scrollbars="vertical"
                 app:myOffersListData="@{homeViewModel.myOffers}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
