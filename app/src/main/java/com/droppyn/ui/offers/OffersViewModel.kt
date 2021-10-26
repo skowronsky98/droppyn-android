@@ -3,6 +3,7 @@ package com.droppyn.ui.offers
 import android.app.Application
 import androidx.lifecycle.*
 import com.droppyn.database.getDatabase
+import com.droppyn.domain.Offer
 import com.droppyn.domain.Shoe
 import com.droppyn.domain.Size
 import com.droppyn.repository.DroppynRepository
@@ -11,7 +12,7 @@ import kotlinx.coroutines.launch
 class OffersViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getDatabase(application)
     private val droppynRepository = DroppynRepository(database)
-    var offers = droppynRepository.offers
+    var offers: LiveData<List<Offer>> = droppynRepository.offers
 
 
     private val _shoe = MutableLiveData<Shoe>()
@@ -29,7 +30,12 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
     fun setFilter(size: Size){
         _size.value = size
-        offers = droppynRepository.getFilteredBySizeOffers(size)
+//        offers = droppynRepository.getFilteredBySizeOffers(size)
+        offers = Transformations.map(offers){
+            it.filter {
+                it.size.id.contentEquals(size.id)
+            }
+        }
     }
 
 

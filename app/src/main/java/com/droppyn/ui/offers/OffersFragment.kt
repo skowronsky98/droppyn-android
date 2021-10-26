@@ -54,7 +54,9 @@ class OffersFragment : Fragment() {
         })
 
         shareFilterDataViewModel.item.observe(viewLifecycleOwner, { filter ->
-            offersViewModel.setFilter(filter)
+
+            filter?.let { offersViewModel.setFilter(it) }
+
         })
 
 

@@ -13,13 +13,14 @@ data class NetworkUserContainer(val user: UserDTO)
 data class UserDTO(
 		@Json(name = "id")
 		val id: String,
-        val username: String,
-        val email: String,
-        val firstname: String,
-        val surname: String,
-        val phone: Int,
-        val photoURL: String,
-        val defultSize: Size?
+		val username: String,
+		val email: String,
+		val firstname: String,
+		val surname: String,
+		val phone: Int,
+		val photoURL: String,
+		val bio: String,
+		val defultSize: Size?
 )
 
 fun NetworkUserContainer.asDatabaseModel(): DatabaseUser {
@@ -31,6 +32,7 @@ fun NetworkUserContainer.asDatabaseModel(): DatabaseUser {
 			surname = user.surname,
 			phone = user.phone,
 			photoURL = user.photoURL,
+			bio = user.bio,
 			idDefultSize = user.defultSize?.id.toString()
 		)
 
@@ -45,7 +47,9 @@ fun NetworkUserContainer.asDatabaseProfileModel(): DatabaseProfile {
 			surname = user.surname,
 			phone = user.phone,
 			photoURL = user.photoURL,
+			bio = user.bio,
 			idDefultSize = user.defultSize?.id.toString()
 	)
 
 }
+

@@ -41,6 +41,21 @@ class FilterFragment : Fragment() {
              }
          })
 
+
+         filterViewModel.applyFilter.observe(viewLifecycleOwner, { filterClicked ->
+             if(filterClicked) {
+                 filterViewModel.size.value?.let { shareFilterDataViewModel.setItem(it) }
+                 filterViewModel.applyFilterFinished()
+             }
+         })
+
+         filterViewModel.removeFilter.observe(viewLifecycleOwner, { removeFilter ->
+             if(removeFilter) {
+                 shareFilterDataViewModel.clearData()
+                 filterViewModel.removeFilterFinished()
+             }
+         })
+
          filterViewModel.sizeChart.observe(viewLifecycleOwner, { sizes ->
              binding.sizePicker.minValue = 0
              binding.sizePicker.maxValue = sizes.size - 1
@@ -48,7 +63,7 @@ class FilterFragment : Fragment() {
              filterViewModel.setSize(0)
          })
 
-         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> shareFilterDataViewModel.setItem(filterViewModel.setSize(newVal)) }
+         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> filterViewModel.setSize(newVal) }
 
         return binding.root
     }

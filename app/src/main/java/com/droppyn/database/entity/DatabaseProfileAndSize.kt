@@ -25,6 +25,7 @@ fun List<DatabaseProfileAndSize>.asDomainModel(): List<User> {
             surname = it.user.surname,
             phone = it.user.phone,
             photoURL = it.user.photoURL,
+            bio = it.user.bio,
             defultSize = it.defultSize?.let { size -> databseSizeAndBrandToDomain(size) }
         )
     }
@@ -39,6 +40,7 @@ fun databaseProfileAndSizeToDomain(it: DatabaseProfileAndSize): User {
         surname = it.user.surname,
         phone = it.user.phone,
         photoURL = it.user.photoURL,
+        bio = it.user.bio,
         defultSize = it.defultSize?.let { size -> databseSizeAndBrandToDomain(size) }
     )
 }

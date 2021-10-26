@@ -40,6 +40,7 @@ class TestUtil {
                 surname = "Malysz",
                 phone = 123321123,
                 photoURL = "photoURL",
+                bio = "",
                 idDefultSize = createDatabaseSize().id
 
         )

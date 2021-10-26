@@ -12,4 +12,8 @@ class ShareFilterDataViewModel: ViewModel() {
     fun setItem(size: Size){
         _item.value = size
     }
+
+    fun clearData(){
+        _item.value = null
+    }
 }

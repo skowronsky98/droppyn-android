@@ -13,5 +13,6 @@ data class DatabaseProfile (
     val surname : String,
     val phone : Int,
     val photoURL : String,
+    val bio : String,
     val idDefultSize : String
 )

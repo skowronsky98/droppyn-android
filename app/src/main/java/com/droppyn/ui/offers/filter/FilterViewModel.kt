@@ -29,13 +29,36 @@ class FilterViewModel(application: Application) : AndroidViewModel(application) 
         _navToHome.value = false
     }
 
-    fun setSize(index: Int): Size {
+    fun setSize(index: Int) {
         sizeChart.value?.get(index).let { size.value = it }
 
-        return size.value!!
-        //TODO set size in viewmodel to pass it into offers fragment
-//        size.value?.let { _myOffer.value?.size = it }
     }
+
+    private val _applyFilter = MutableLiveData<Boolean>()
+    val applyFilter : LiveData<Boolean>
+        get() = _applyFilter
+
+    fun applyFilter(){
+        _applyFilter.value = true
+    }
+
+    fun applyFilterFinished(){
+        _applyFilter.value = false
+    }
+
+
+    private val _removeFilter = MutableLiveData<Boolean>()
+    val removeFilter : LiveData<Boolean>
+        get() = _removeFilter
+
+    fun removeFilter(){
+        _removeFilter.value = true
+    }
+
+    fun removeFilterFinished(){
+        _removeFilter.value = false
+    }
+
 
 
     class Factory(val app: Application) : ViewModelProvider.Factory {

@@ -13,7 +13,7 @@ class ShopViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-        refreshData()
+//        refreshData()
     }
 
 

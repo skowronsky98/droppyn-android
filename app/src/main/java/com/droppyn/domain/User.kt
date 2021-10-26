@@ -10,6 +10,7 @@ data class User (
 	val surname : String,
 	val phone : Int,
 	val photoURL : String,
+	val bio : String,
 	val defultSize : Size?
 )
 
@@ -21,5 +22,6 @@ fun userToDTO(user: User): UserDTO = UserDTO(
 		surname = user.surname,
 		phone = user.phone,
 		photoURL = user.photoURL,
+		bio = user.bio,
 		defultSize = user.defultSize
 )

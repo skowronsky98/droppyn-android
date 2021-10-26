@@ -44,6 +44,12 @@ class HomeFragment : Fragment() {
       })
 
 
+    homeViewModel.myOffers.observe(viewLifecycleOwner, { myOffers ->
+      if (myOffers.isNullOrEmpty()){
+        homeViewModel.refreshData()
+      }
+    })
+
 
 
 //    binding.myOffersRecyclerView.itemAnimator?.changeDuration = 0;

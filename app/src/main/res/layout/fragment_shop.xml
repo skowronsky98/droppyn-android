@@ -58,26 +58,34 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/shoe_recycler_view"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_to_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="?attr/actionBarSize"
-            android:paddingBottom="64dp"
-            app:shoesListData="@{shopViewModel.shoes}"
-            android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-            tools:listitem="@layout/item_shoe" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/shoe_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="?attr/actionBarSize"
+                android:paddingBottom="64dp"
+                android:scrollbars="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                app:shoesListData="@{shopViewModel.shoes}"
 
-<!--        app:myOffersListData="@{homeViewModel.myOffers}"-->
+                tools:listitem="@layout/item_shoe" />
 
-
+            <!--        app:myOffersListData="@{homeViewModel.myOffers}"-->
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

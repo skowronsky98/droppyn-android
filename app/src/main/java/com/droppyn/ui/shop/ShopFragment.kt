@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentShopBinding
+import com.droppyn.ui.offers.filter.ShareFilterDataViewModel
 
 class ShopFragment : Fragment() {
 
@@ -21,6 +22,7 @@ class ShopFragment : Fragment() {
     }
     private lateinit var binding: FragmentShopBinding
     private val shareDataShopViewModel: ShareDataShopViewModel by activityViewModels()
+    private val shareFilterDataViewModel: ShareFilterDataViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -44,6 +46,18 @@ class ShopFragment : Fragment() {
             }
         })
 
+        shopViewModel.shoes.observe(viewLifecycleOwner, { shoes ->
+            if(shoes.isNullOrEmpty()){
+                shopViewModel.refreshData()
+            }
+        })
+
+        binding.swipeToRefresh.setOnRefreshListener {
+            shopViewModel.refreshData()
+            binding.swipeToRefresh.isRefreshing = false
+        }
+
+        shareFilterDataViewModel.clearData()
 
         return binding.root
     }

@@ -14,6 +14,7 @@ data class DatabaseUser (
         val surname : String,
         val phone : Int,
         val photoURL : String,
+        val bio : String,
         val idDefultSize : String
 )
 

@@ -1,17 +1,27 @@
 package com.droppyn.ui.profile
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.droppyn.databinding.FragmentProfileBinding
+import com.droppyn.ui.myoffer.MyOfferViewModel
 
 class ProfileFragment : Fragment() {
 
-  private lateinit var profileViewModel: ProfileViewModel
   private lateinit var binding: FragmentProfileBinding
+
+  private val profileViewModel: ProfileViewModel by lazy {
+    val activity = requireNotNull(this.activity) {
+      "You can only access the viewModel after onViewCreated()"
+    }
+    ViewModelProvider(this, ProfileViewModel.Factory(activity.application)).get(ProfileViewModel::class.java)
+  }
 
 
   override fun onCreateView(
@@ -19,11 +29,36 @@ class ProfileFragment : Fragment() {
     container: ViewGroup?,
     savedInstanceState: Bundle?
   ): View? {
-    profileViewModel =
-            ViewModelProvider(this).get(ProfileViewModel::class.java)
     binding = FragmentProfileBinding.inflate(inflater, container, false)
     binding.profileViewModel = profileViewModel
 
+    profileViewModel.changeProfilePicture.observe(viewLifecycleOwner, { changePhoto ->
+      if (changePhoto){
+        openActivityForResult()
+        profileViewModel.changeProfilePictureFinished()
+      }
+    })
+
+    profileViewModel.profile.observe(viewLifecycleOwner,{ user ->
+      if(user != null){
+          binding.user = user
+      }
+    })
+
     return binding.root
+  }
+
+  private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    if (result.resultCode == Activity.RESULT_OK) {
+      // There are no request codes
+      val data: Intent? = result.data
+      binding.picture.setImageURI(data?.data)
+
+    }
+  }
+
+  fun openActivityForResult() {
+    val intent = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+    resultLauncher.launch(intent)
   }
 }
