@@ -8,7 +8,7 @@ data class User (
 	val email : String,
 	val firstname : String,
 	val surname : String,
-	val phone : Int,
+	val phone : String,
 	val photoURL : String,
 	val bio : String,
 	val defultSize : Size?

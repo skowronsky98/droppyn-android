@@ -38,7 +38,7 @@ class TestUtil {
                 email = "skocze@gmail.com",
                 firstname = "Adam",
                 surname = "Malysz",
-                phone = 123321123,
+                phone = "123321123",
                 photoURL = "photoURL",
                 bio = "",
                 idDefultSize = createDatabaseSize().id
