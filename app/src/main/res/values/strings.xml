@@ -26,4 +26,8 @@
     <string name="filter">Filter</string>
     <string name="apply_filter">Apply Filter</string>
     <string name="delete_filter">Delete Filter</string>
+    <string name="firstname">Firstname</string>
+    <string name="surname">Surname</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
 </resources>

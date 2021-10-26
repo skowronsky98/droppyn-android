@@ -15,24 +15,36 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/form"
         tools:context=".ui.profile.ProfileFragment">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/picture"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:padding="4dp"
             android:layout_marginTop="24dp"
             android:onClick="@{() -> profileViewModel.changeProfilePicture()}"
+            android:padding="4dp"
+            android:background="@color/white"
             android:src="@drawable/ic_profile_black_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:strokeWidth="4dp"
+            app:shapeAppearanceOverlay="@style/Circular"
             app:strokeColor="@color/grey"
-            app:shapeAppearanceOverlay="@style/Circular" />
+            app:strokeWidth="4dp" />
 
 
         <TextView
@@ -43,11 +55,204 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:text="@{user.username}"
+            android:textStyle="bold"
             android:textAlignment="center"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/picture" />
+
+
+        <TextView
+            android:id="@+id/price_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/firstname"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/card_offer_price"
+            app:layout_constraintTop_toBottomOf="@+id/text_username" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_offer_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/price_text">
+
+            <TextView
+                android:id="@+id/offer_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{user.firstname}"
+                android:textSize="18sp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/surname_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/surname"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/card_offer_price"
+            app:layout_constraintTop_toBottomOf="@+id/card_offer_price" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_offer_surname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/surname_title_text">
+
+            <TextView
+                android:id="@+id/surname_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{user.surname}"
+                android:textSize="18sp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/email_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/email"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/card_offer_price"
+            app:layout_constraintTop_toBottomOf="@+id/card_offer_surname" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_title_text">
+
+            <TextView
+                android:id="@+id/email_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{user.email}"
+                android:textSize="18sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/phone_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/phone"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/card_offer_price"
+            app:layout_constraintTop_toBottomOf="@+id/card_email" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone_title_text">
+
+            <TextView
+                android:id="@+id/phone_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{user.username}"
+                android:textSize="18sp" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/bio_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/bio"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/card_offer_price"
+            app:layout_constraintTop_toBottomOf="@+id/card_phone" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bio_title_text">
+
+            <TextView
+                android:id="@+id/bio_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="18dp"
+                android:layout_marginBottom="8dp"
+                android:text="@{user.bio}"
+                android:textSize="18sp" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
