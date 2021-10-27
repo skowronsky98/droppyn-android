@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.droppyn.databinding.ItemMyOfferBinding
 import com.droppyn.domain.Offer
 
@@ -15,6 +16,11 @@ class MyOffersAdapter(val clickListener: MyOfferListener): ListAdapter<Offer,MyO
 
             fun bind(offer: Offer, clickListener: MyOfferListener){
                 binding.property = offer
+
+                Glide.with(binding.offerImage)
+                    .load(offer.shoe.media.imageUrl)
+                    .into(binding.offerImage)
+
                 binding.clickListener = clickListener
                 binding.executePendingBindings()
             }
@@ -38,6 +44,8 @@ class MyOffersAdapter(val clickListener: MyOfferListener): ListAdapter<Offer,MyO
 
     override fun onBindViewHolder(holder: MyOffersAdapter.MyOfferPropertyViewHolder, position: Int) {
         holder.bind(getItem(position)!!, clickListener)
+
+
     }
 
 }

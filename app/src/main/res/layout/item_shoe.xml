@@ -28,10 +28,11 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginVertical="8dp"
+                android:layout_marginStart="8dp"
                 android:contentDescription="@string/shoe_image"
                 android:src="@drawable/ic_baseline_shopping_bag_24"
-                android:textSize="20sp"
 
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +48,8 @@
                 android:textAlignment="viewStart"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/offer_image"
                 app:layout_constraintTop_toTopOf="@+id/offer_image" />
 

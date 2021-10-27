@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.droppyn.R
 import com.droppyn.databinding.FragmentOfferDetailBinding
 import com.droppyn.ui.shop.ShareDataShopViewModel
@@ -38,6 +39,12 @@ class OfferDetailFragment : Fragment() {
 
         shareDataShopViewModel.itemOffer.observe(viewLifecycleOwner, {
             Log.i("share",it.id)
+
+            Glide.with(requireContext())
+                .load(it.shoe.media.imageUrl)
+                .into(binding.imageView)
+
+
             offerDetailViewModel.setOffer(it)
         })
 

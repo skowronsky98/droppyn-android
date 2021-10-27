@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.droppyn.R
 import com.droppyn.databinding.FragmentMyOfferBinding
 import com.droppyn.domain.Offer
@@ -42,6 +43,11 @@ class MyOfferFragment : Fragment() {
         lateinit var sizeIndex: String
 
         shareDataMyOffersViewModel.item.observe(viewLifecycleOwner, { offer ->
+
+            Glide.with(requireContext())
+                .load(offer.shoe.media.imageUrl)
+                .into(binding.imageView)
+
             myOfferViewModel.setMyOffer(offer)
             sizeIndex = offer.size.id
         })
