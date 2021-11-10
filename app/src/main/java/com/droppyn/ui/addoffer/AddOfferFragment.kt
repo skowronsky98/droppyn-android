@@ -60,10 +60,16 @@ class AddOfferFragment : Fragment() {
         })
 
         addOfferViewModel.sizeChart.observe(viewLifecycleOwner, { sizes ->
+
             binding.sizePicker.minValue = 0
-            binding.sizePicker.maxValue = sizes.size - 1
-            binding.sizePicker.displayedValues = sizes.map { size -> size.us.toString() + " US"}.toTypedArray()
-            addOfferViewModel.setSize(0)
+            binding.sizePicker.maxValue = 0
+
+            if(sizes.isNotEmpty()){
+                binding.sizePicker.minValue = 0
+                binding.sizePicker.maxValue = sizes.size - 1
+                binding.sizePicker.displayedValues = sizes.map { size -> size.us.toString() + " US"}.toTypedArray()
+                addOfferViewModel.setSize(0)
+            }
         })
 
         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> addOfferViewModel.setSize(newVal) }

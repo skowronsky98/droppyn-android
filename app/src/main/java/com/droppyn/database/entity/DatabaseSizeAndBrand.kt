@@ -24,7 +24,6 @@ fun List<DatabaseSizeAndBrand>.asDomainModel(): List<Size> {
                 eu = it.size.eu,
                 type = it.size.type,
                 brand = databaseBrandtoDomain(it.brand)
-
         )
     }
 }

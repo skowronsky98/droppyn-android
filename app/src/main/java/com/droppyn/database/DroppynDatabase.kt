@@ -14,7 +14,8 @@ import com.droppyn.database.entity.dao.*
     DatabaseUser::class,
     DatabaseOffer::class,
     DatabaseMyOffer::class,
-    DatabaseProfile::class
+    DatabaseProfile::class,
+    DatabaseToken::class
                      ], version = 1)
 abstract class DroppynDatabase : RoomDatabase() {
     abstract val brandDao: BrandDao
@@ -24,6 +25,7 @@ abstract class DroppynDatabase : RoomDatabase() {
     abstract val offerDao: OfferDao
     abstract val myOfferDao: MyOfferDao
     abstract val profileDao: ProfileDao
+    abstract val tokenDao: TokenDao
 
     //relation tables
     abstract val shoesAndBrandDao : ShoesAndBrandDao

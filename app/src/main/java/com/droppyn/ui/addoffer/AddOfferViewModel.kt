@@ -29,7 +29,8 @@ class AddOfferViewModel(application: Application) : AndroidViewModel(application
     init {
         viewModelScope.launch {
             droppynRepository.getProfile()?.let { _offerCrator.user = it }
-
+            droppynRepository.refreshSheos()
+            droppynRepository.refreshSizeChart()
         }
     }
 

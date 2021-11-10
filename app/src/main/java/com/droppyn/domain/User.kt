@@ -6,11 +6,11 @@ data class User (
 	val id : String,
 	val username : String,
 	val email : String,
-	val firstname : String,
-	val surname : String,
-	val phone : String,
-	val photoURL : String,
-	val bio : String,
+	val firstname : String?,
+	val surname : String?,
+	val phone : String?,
+	val photoURL : String?,
+	val bio : String?,
 	val defultSize : Size?
 )
 

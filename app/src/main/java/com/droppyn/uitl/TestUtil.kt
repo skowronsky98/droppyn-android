@@ -8,6 +8,11 @@ class TestUtil {
 
     companion object {
 
+        fun addToken(): DatabaseToken = DatabaseToken(
+            accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXBjemFuIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlzcyI6IkRyb3BweW4iLCJleHAiOjE2MzY2MzM5NDJ9.wT1C5mZvNIU_0N0MEMts1OKZ5E7-ulBQWqOCJOMfCcA",
+            refreshToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXBjemFuIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlzcyI6IkRyb3BweW4iLCJleHAiOjE2NjgwODM1NDJ9.1l29rEmw1OiCVvWiJOxo8245gdGfP-cM_mpcA3JC7mQ"
+        )
+
         fun createDatabseBrand(): DatabaseBrand = DatabaseBrand(
                 id = "6054bd791f943b17604b19a0",
                 name = "Nike",
@@ -32,16 +37,16 @@ class TestUtil {
 
 
 
-        fun createDatabseUser(): DatabaseUser = DatabaseUser(
-                id = "1",
-                username = "skoczek",
-                email = "skocze@gmail.com",
-                firstname = "Adam",
-                surname = "Malysz",
-                phone = "123321123",
-                photoURL = "photoURL",
-                bio = "",
-                idDefultSize = createDatabaseSize().id
+        fun createDatabseUser(): DatabaseProfile = DatabaseProfile(
+                id = "618bb9bcde3bed6158e96c06",
+                username = "japczan",
+                email = "aa.krasucki@gamil.com",
+                firstname = null,
+                surname = null,
+                phone = null,
+                photoURL = null,
+                bio = null,
+                idDefultSize = null
 
         )
 

@@ -15,11 +15,11 @@ data class UserDTO(
 		val id: String,
 		val username: String,
 		val email: String,
-		val firstname: String,
-		val surname: String,
-		val phone: String,
-		val photoURL: String,
-		val bio: String,
+		val firstname: String?,
+		val surname: String?,
+		val phone: String?,
+		val photoURL: String?,
+		val bio: String?,
 		val defultSize: Size?
 )
 
@@ -33,7 +33,7 @@ fun NetworkUserContainer.asDatabaseModel(): DatabaseUser {
 			phone = user.phone,
 			photoURL = user.photoURL,
 			bio = user.bio,
-			idDefultSize = user.defultSize?.id.toString()
+			idDefultSize = user.defultSize?.id
 		)
 
 }
@@ -48,7 +48,7 @@ fun NetworkUserContainer.asDatabaseProfileModel(): DatabaseProfile {
 			phone = user.phone,
 			photoURL = user.photoURL,
 			bio = user.bio,
-			idDefultSize = user.defultSize?.id.toString()
+			idDefultSize = user.defultSize?.id
 	)
 
 }

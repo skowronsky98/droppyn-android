@@ -28,6 +28,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
 //            droppynRepository.refreshBrands()
 //            droppynRepository.refreshSizeChart()
+            droppynRepository.addTestDataToDatabase()
             droppynRepository.refreshMyOffers()
 //            droppynRepository.refreshProfile()
         }

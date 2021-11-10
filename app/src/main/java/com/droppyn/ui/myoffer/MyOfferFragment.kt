@@ -54,11 +54,16 @@ class MyOfferFragment : Fragment() {
 
 
         myOfferViewModel.sizeChart.observe(viewLifecycleOwner, { sizes ->
-            binding.sizePicker.minValue = 0
-            binding.sizePicker.maxValue = sizes.size - 1
-            binding.sizePicker.displayedValues = sizes.map { size -> size.us.toString() + " US"}.toTypedArray()
 
-            binding.sizePicker.value = sizes.indexOf(sizes.first { size -> size.id.equals(sizeIndex) })
+            if(sizes.isNotEmpty()) {
+                binding.sizePicker.minValue = 0
+                binding.sizePicker.maxValue = sizes.size - 1
+                binding.sizePicker.displayedValues =
+                    sizes.map { size -> size.us.toString() + " US" }.toTypedArray()
+
+                binding.sizePicker.value =
+                    sizes.indexOf(sizes.first { size -> size.id.equals(sizeIndex) })
+            }
         })
 
         binding.sizePicker.setOnValueChangedListener { picker, oldVal, newVal -> myOfferViewModel.setSize(newVal) }

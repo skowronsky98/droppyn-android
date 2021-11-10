@@ -26,6 +26,15 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
 
 //    lateinit var sizeChart =
 
+    init {
+        refresh()
+    }
+
+    fun refresh(){
+        viewModelScope.launch {
+            droppynRepository.refreshSizeChart()
+        }
+    }
 
     fun setMyOffer(offer: Offer){
         _myOffer.value = offer
