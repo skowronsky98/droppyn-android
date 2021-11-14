@@ -13,4 +13,6 @@
     <color name="app_bar">#F5F5F5</color>
     <color name="delete">#E91E63</color>
 
+    <color name="hyperLink">#2196F3</color>
+    <color name="colorTitleBlack">#0e1111</color>
 </resources>

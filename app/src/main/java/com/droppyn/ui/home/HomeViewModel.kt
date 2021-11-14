@@ -26,10 +26,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun refreshData() {
         viewModelScope.launch {
-//            droppynRepository.refreshBrands()
-//            droppynRepository.refreshSizeChart()
             droppynRepository.addTestDataToDatabase()
             droppynRepository.refreshMyOffers()
+//            droppynRepository.refreshProfile()
+        }
+    }
+
+    fun refreshSize() {
+        viewModelScope.launch {
+            droppynRepository.refreshBrands()
+            droppynRepository.refreshSizeChart()
 //            droppynRepository.refreshProfile()
         }
     }
@@ -41,6 +47,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun navigateToMyOffer() {
         _navigateToMyOffer.value = true
+        refreshSize()
     }
 
     fun onMyOfferNavigated() {
@@ -53,8 +60,10 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         get() = _navigateToAddOffer
 
 
+
     fun navigateToAddOffer() {
         _navigateToAddOffer.value = true
+        refreshSize()
     }
 
     fun onAddOfferNavigated() {

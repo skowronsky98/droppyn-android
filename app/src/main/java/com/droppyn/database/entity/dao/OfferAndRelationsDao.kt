@@ -10,18 +10,18 @@ import com.droppyn.database.entity.DatabaseOfferAndRelations
 @Dao
 interface OfferAndRelationsDao {
     @Transaction
-    @Query("SELECT * FROM offers")
+    @Query("SELECT * FROM offers ORDER BY price ASC")
     fun getOffersAndRelations(): LiveData<List<DatabaseOfferAndRelations>>
 
     @Transaction
-    @Query("SELECT * FROM offers where idShoe=:idShoe")
+    @Query("SELECT * FROM offers where idShoe=:idShoe ORDER BY price ASC")
     fun getFilteredOffersAndRelations(idShoe: String): LiveData<List<DatabaseOfferAndRelations>>
 
     @Transaction
-    @Query("SELECT * FROM offers where idSize=:idSize")
+    @Query("SELECT * FROM offers where idSize=:idSize ORDER BY price ASC")
     fun getFilteredBySizeOffersAndRelations(idSize: String): LiveData<List<DatabaseOfferAndRelations>>
 
     @Transaction
-    @Query("SELECT * FROM myoffers")
+    @Query("SELECT * FROM myoffers ORDER BY id DESC")
     fun getMyOffersAndRelations(): LiveData<List<DatabaseMyOfferAndRelations>>
 }

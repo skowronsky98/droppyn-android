@@ -9,7 +9,7 @@ class TestUtil {
     companion object {
 
         fun addToken(): DatabaseToken = DatabaseToken(
-            accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXBjemFuIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlzcyI6IkRyb3BweW4iLCJleHAiOjE2MzY2MzM5NDJ9.wT1C5mZvNIU_0N0MEMts1OKZ5E7-ulBQWqOCJOMfCcA",
+            accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXBjemFuIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlzcyI6IkRyb3BweW4iLCJleHAiOjE2MzY1NTAwNzZ9.Tpe8M0O8lm2kqkdW4p8leqEosp9ONQVAzQrOnU3uQus",
             refreshToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXBjemFuIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlzcyI6IkRyb3BweW4iLCJleHAiOjE2NjgwODM1NDJ9.1l29rEmw1OiCVvWiJOxo8245gdGfP-cM_mpcA3JC7mQ"
         )
 

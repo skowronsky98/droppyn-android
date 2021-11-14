@@ -63,18 +63,23 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
 //    val userId = "618b88478665571bbc1a10e9"
 
-    suspend fun refreshToken() {
-        withContext(Dispatchers.IO){
+    private suspend fun refreshToken() = withContext(Dispatchers.IO){
             try {
                 val refreshToken = database.tokenDao.getToken().refreshToken
-                val token = "Bearer $refreshToken"
+                val auth = "Bearer $refreshToken"
 
-                val tokensDTO = DroppynApi.retrofitService.refreshToken(token)
+                val tokensDTO = DroppynApi.retrofitService.refreshToken(auth)
+
+                database.tokenDao.deleteAll()
+                database.tokenDao.insert(NetworkAccessTokenContainer(tokensDTO).asDatabaseModel())
+                return@withContext true
 
             } catch (e: Exception){
                 Log.i("retrofit",e.message.toString())
+                return@withContext false
+
             }
-        }
+
     }
 
 
@@ -91,8 +96,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
 //                    brands.forEach { Log.i("retrofit",it.name) }
                 }
                 database.brandDao.insertAll(*NetworkBrandContainer(brands).asDatabaseModel())
-            } catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            } catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                refreshBrands()
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
         }
     }
@@ -111,8 +144,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
                 }
                 database.shoeDao.insertAll(*NetworkShoeContainer(shoes).asDatabaseModel())
-            } catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            } catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                refreshSheos()
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
         }
     }
@@ -132,8 +193,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
                 }
                 database.sizeDao.insertAll(*NetworkSizeContainer(sizechart).asDatabaseModel())
-            } catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            } catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                refreshSizeChart()
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
         }
     }
@@ -151,8 +240,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
                     Log.i("retrofit",user.id)
 
                 database.profileDao.insert(NetworkUserContainer(user).asDatabaseProfileModel())
-            } catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            } catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                refreshProfile()
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
         }
     }
@@ -165,7 +282,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 val auth = "Bearer $token"
 
                 val offers = DroppynApi.retrofitService.getOffersProperties(auth)
-                if(offers.isNotEmpty()) {
+//                if(offers.isNotEmpty()) {
                     database.offerDao.deleteAll()
 //                    offers.forEach { Log.i("retrofit",it.shoe.model+" "+it.price.toString()) }
                     offers.forEach { offerDTO ->
@@ -175,7 +292,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
                         database.userDao.insert(NetworkUserContainer(offerDTO.user).asDatabaseModel())
                     }
 
-                }
+//                }
                 database.offerDao.insertAll(*NetworkOfferContainer(offers).asDatabaseModel())
 
 
@@ -185,9 +302,24 @@ class DroppynRepository(private val database: DroppynDatabase) {
                         val code = throwable.code()
 
                         if(code == 401){
-                            Log.i("retrofit","------RefreshToken-----")
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                refreshOffers()
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
                         }
-                        else{}
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
                     }
                     else -> {
                         Log.i("retrofit",throwable.message.toString())
@@ -220,8 +352,35 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
 //                }
                 database.myOfferDao.insertAll(*NetworkMyOfferContainer(myOffers).asDatabaseModel())
-            } catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            } catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                refreshMyOffers()
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
 
             }
         }
@@ -249,8 +408,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 )
                 database.myOfferDao.insert(myOfferDTOtoDatabaseModel(offer))
 
-            }catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            }catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                createMyOffer(myOffer, navListener)
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
 
         }
@@ -274,8 +461,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
                 )
                 database.myOfferDao.insert(myOfferDTOtoDatabaseModel(offer))
 
-            }catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            }catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                updateMyOffer(myOffer, navListener)
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
 
         }
@@ -294,8 +509,36 @@ class DroppynRepository(private val database: DroppynDatabase) {
                         myOffer.id,
                         myOffer.user.id)
                 database.myOfferDao.deleteById(myOffer.id)
-            }catch (e: Exception){
-                Log.i("retrofit",e.message.toString())
+            }catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                deleteMyOffer(myOffer)
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
             }
 
         }

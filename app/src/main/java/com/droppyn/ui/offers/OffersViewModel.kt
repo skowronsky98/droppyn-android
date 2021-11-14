@@ -41,7 +41,7 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
 
     init {
-        refreshData()
+//        refreshData()
 
     }
 

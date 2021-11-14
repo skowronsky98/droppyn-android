@@ -9,6 +9,6 @@ import com.droppyn.database.entity.DatabaseShoesAndBrand
 @Dao
 interface ShoesAndBrandDao {
     @Transaction
-    @Query("SELECT * FROM shoes")
+    @Query("SELECT * FROM shoes order by id DESC")
     fun getShoesAndBrands(): LiveData<List<DatabaseShoesAndBrand>>
 }

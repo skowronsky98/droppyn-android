@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
 
     homeViewModel.myOffers.observe(viewLifecycleOwner, { myOffers ->
       if (myOffers.isNullOrEmpty()){
-        homeViewModel.refreshData()
+//        homeViewModel.refreshData()
       }
     })
 

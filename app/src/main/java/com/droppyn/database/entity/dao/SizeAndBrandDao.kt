@@ -9,7 +9,7 @@ import com.droppyn.database.entity.DatabaseSizeAndBrand
 @Dao
 interface SizeAndBrandDao {
     @Transaction
-    @Query("SELECT * FROM sizechart")
+    @Query("SELECT * FROM sizechart ORDER BY us ASC")
     fun getSizeAndBrands(): LiveData<List<DatabaseSizeAndBrand>>
 
 }
