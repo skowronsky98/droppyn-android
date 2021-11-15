@@ -498,6 +498,7 @@ class DroppynRepository(private val database: DroppynDatabase) {
 //        navListener()
     }
 
+
     suspend fun deleteMyOffer(myOffer: Offer){
         withContext(Dispatchers.IO){
             try {
@@ -508,7 +509,9 @@ class DroppynRepository(private val database: DroppynDatabase) {
                         auth = auth,
                         myOffer.id,
                         myOffer.user.id)
+
                 database.myOfferDao.deleteById(myOffer.id)
+
             }catch (throwable: Throwable){
                 when (throwable) {
                     is HttpException -> {
@@ -541,6 +544,28 @@ class DroppynRepository(private val database: DroppynDatabase) {
 
             }
 
+        }
+    }
+
+    suspend fun cleanDatabase(){
+        withContext(Dispatchers.IO){
+            try {
+
+                database.tokenDao.deleteAll()
+                database.myOfferDao.deleteAll()
+                database.offerDao.deleteAll()
+                database.profileDao.deleteAll()
+                database.userDao.deleteAll()
+
+                database.shoeDao.deleteAll()
+                database.sizeDao.deleteAll()
+                database.brandDao.deleteAll()
+
+
+            }catch (exception: Exception){
+                exception.message?.let { Log.i("retrofit", it) }
+
+            }
         }
     }
 

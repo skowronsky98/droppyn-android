@@ -32,7 +32,8 @@ class MyOfferViewModel(application: Application) : AndroidViewModel(application)
 
     fun refresh(){
         viewModelScope.launch {
-            droppynRepository.refreshSizeChart()
+//            TODO test
+//            droppynRepository.refreshSizeChart()
         }
     }
 

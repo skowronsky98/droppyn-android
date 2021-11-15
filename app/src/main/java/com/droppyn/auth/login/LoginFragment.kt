@@ -41,21 +41,29 @@ class LoginFragment : Fragment() {
 
 
 
-        viewModel.eventLogin.observe(viewLifecycleOwner, Observer { login ->
+        viewModel.eventLogin.observe(viewLifecycleOwner, { login ->
             if (login){
                 navToMainActivity()
-                Toast.makeText(context, viewModel.email.value?: "null", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, viewModel.username.value?: "null", Toast.LENGTH_SHORT).show()
                 viewModel.eventLoginFinished()
             }
         })
 
-        viewModel.eventNavSignup.observe(viewLifecycleOwner, Observer { navSignup ->
+        viewModel.eventNavSignup.observe(viewLifecycleOwner, { navSignup ->
             if(navSignup){
                 navToSignup()
-                Toast.makeText(context, "Navigation", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(context, "Navigation", Toast.LENGTH_SHORT).show()
 
 
                 viewModel.eventNavSignupFinished()
+            }
+        })
+
+
+        viewModel.eventError.observe(viewLifecycleOwner, { error ->
+            if (error){
+                Toast.makeText(context, "Failed to login", Toast.LENGTH_LONG).show()
+                viewModel.eventErrorFinished()
             }
         })
 

@@ -45,6 +45,12 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
 
     }
 
+    fun refreshData() {
+        viewModelScope.launch {
+            droppynRepository.refreshOffers()
+        }
+    }
+
     private val _navToOfferDitail = MutableLiveData<Boolean>()
     val navToOfferDitail: LiveData<Boolean>
         get() = _navToOfferDitail
@@ -82,11 +88,7 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
         _navBackToShop.value = false
     }
 
-    fun refreshData() {
-        viewModelScope.launch {
-            droppynRepository.refreshOffers()
-        }
-    }
+
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {

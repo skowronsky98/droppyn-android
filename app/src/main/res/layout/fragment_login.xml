@@ -16,8 +16,8 @@
 
         <EditText
             android:id="@+id/username"
-            android:hint="@string/email"
-            android:text="@={loginViewModel.email}"
+            android:hint="@string/username"
+            android:text="@={loginViewModel.username}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"

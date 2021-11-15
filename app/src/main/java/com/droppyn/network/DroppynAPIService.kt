@@ -45,6 +45,9 @@ interface DroppynAPIService {
     suspend fun getUserProperties(@Header("Authorization") auth: String,
                                   @Query("id") id: String): UserDTO
 
+    @GET("user/{username}")
+    suspend fun getUserByUsername(@Header("Authorization") auth: String,
+                                  @Path("username") username: String): UserDTO
 
     @GET("offer/all")
     suspend fun getOffersProperties(@Header("Authorization") auth: String): List<OfferDTO>

@@ -7,16 +7,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import com.droppyn.MainActivity
 import com.droppyn.R
+import com.droppyn.auth.login.LoginViewModel
 import com.droppyn.databinding.FragmentSignupBinding
 
 
 class SignupFragment : Fragment() {
 
-    private lateinit var viewModel: SignupViewModel
+    private val viewModel: SignupViewModel by lazy {
+        val activity = requireNotNull(this.activity) {
+            "You can only access the viewModel after onViewCreated()"
+        }
+        ViewModelProvider(this, SignupViewModel.Factory(activity.application)).get(SignupViewModel::class.java)
+    }
+
     private lateinit var binding: FragmentSignupBinding
 
     override fun onCreateView(
@@ -29,7 +37,6 @@ class SignupFragment : Fragment() {
         )
 
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this).get(SignupViewModel::class.java)
         binding.signupViewModel = viewModel
 
        viewModel.eventSignup.observe(viewLifecycleOwner, Observer { signup ->
@@ -42,6 +49,13 @@ class SignupFragment : Fragment() {
             if(navLogin){
                 navToLogin()
                 viewModel.eventNavLoginFinished()
+            }
+        })
+
+        viewModel.eventError.observe(viewLifecycleOwner, { error ->
+            if (error){
+                Toast.makeText(context, "Failed to login", Toast.LENGTH_LONG).show()
+                viewModel.eventErrorFinished()
             }
         })
 

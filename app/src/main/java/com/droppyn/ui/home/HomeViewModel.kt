@@ -26,9 +26,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     fun refreshData() {
         viewModelScope.launch {
-            droppynRepository.addTestDataToDatabase()
+            //TODO test
             droppynRepository.refreshMyOffers()
-//            droppynRepository.refreshProfile()
         }
     }
 
