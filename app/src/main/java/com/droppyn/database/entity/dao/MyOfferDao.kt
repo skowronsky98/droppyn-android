@@ -22,6 +22,6 @@ MyOfferDao {
     @Query("DELETE FROM myoffers")
     fun deleteAll()
 
-    @Query("DELETE FROM offers WHERE id = :id")
+    @Query("DELETE FROM myoffers WHERE id = :id")
     fun deleteById(id: String)
 }
