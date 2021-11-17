@@ -41,9 +41,6 @@ class OffersAdapter(val clickListener: OfferListener): ListAdapter<Offer, Offers
     }
 
 
-
-
-
 }
 
 class OfferListener(val clickListener: (offer: Offer) -> Unit) {

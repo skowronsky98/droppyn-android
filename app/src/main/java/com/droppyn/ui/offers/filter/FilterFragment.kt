@@ -36,7 +36,7 @@ class FilterFragment : Fragment() {
 
          filterViewModel.navToHome.observe(viewLifecycleOwner,  { nav ->
              if(nav){
-                 findNavController().navigate(R.id.action_filterFragment_to_offersFragment)
+                 findNavController().popBackStack()
                  filterViewModel.navigationToHomeFinished()
              }
          })

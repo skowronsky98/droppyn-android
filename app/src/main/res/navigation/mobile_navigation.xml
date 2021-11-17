@@ -27,7 +27,7 @@
         <action
             android:id="@+id/action_navigation_shop_to_offersFragment"
             app:destination="@id/offersFragment"
-            app:popUpTo="@id/navigation_shop" />
+            app:popUpToInclusive="false" />
     </fragment>
 
     <fragment
@@ -45,22 +45,14 @@
         android:id="@+id/myOfferFragment"
         android:name="com.droppyn.ui.myoffer.MyOfferFragment"
         android:label="fragment_my_offer"
-        tools:layout="@layout/fragment_my_offer" >
-        <action
-            android:id="@+id/action_myOfferFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
-    </fragment>
+        tools:layout="@layout/fragment_my_offer" />
     <fragment
         android:id="@+id/offersFragment"
         android:name="com.droppyn.ui.offers.OffersFragment"
         android:label="OffersFragment" >
         <action
             android:id="@+id/action_offersFragment_to_offerDetailFragment"
-            app:destination="@id/offerDetailFragment"
-            app:popUpTo="@id/offersFragment" />
-        <action
-            android:id="@+id/action_offersFragment_to_navigation_shop"
-            app:destination="@id/navigation_shop" />
+            app:destination="@id/offerDetailFragment" />
         <action
             android:id="@+id/action_offersFragment_to_filterFragment"
             app:destination="@id/filterFragment" />
@@ -68,11 +60,7 @@
     <fragment
         android:id="@+id/offerDetailFragment"
         android:name="com.droppyn.ui.offers.detail.OfferDetailFragment"
-        android:label="OfferDetailFragment" >
-        <action
-            android:id="@+id/action_offerDetailFragment_to_offersFragment"
-            app:destination="@id/offersFragment" />
-    </fragment>
+        android:label="OfferDetailFragment" />
     <fragment
         android:id="@+id/addOfferFragment"
         android:name="com.droppyn.ui.addoffer.AddOfferFragment"
@@ -80,9 +68,6 @@
         <action
             android:id="@+id/action_addOfferFragment_to_shoesBottomSheetFragment"
             app:destination="@id/shoesBottomSheetFragment" />
-        <action
-            android:id="@+id/action_addOfferFragment_to_navigation_home"
-            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/shoesBottomSheetFragment"
@@ -91,9 +76,5 @@
     <fragment
         android:id="@+id/filterFragment"
         android:name="com.droppyn.ui.offers.filter.FilterFragment"
-        android:label="FilterFragment" >
-        <action
-            android:id="@+id/action_filterFragment_to_offersFragment"
-            app:destination="@id/offersFragment" />
-    </fragment>
+        android:label="FilterFragment" />
 </navigation>

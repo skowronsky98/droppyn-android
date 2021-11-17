@@ -2,6 +2,7 @@ package com.droppyn.ui.offers
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentsOffersBinding
 import com.droppyn.ui.offers.filter.ShareFilterDataViewModel
+import com.droppyn.ui.shoepicker.ActionBottom
 import com.droppyn.ui.shop.ShareDataShopViewModel
 
 class OffersFragment : Fragment() {
@@ -37,10 +39,14 @@ class OffersFragment : Fragment() {
         binding.offersViewModel = offersViewModel
 
 
-        binding.offersRecyclerView.adapter = OffersAdapter(OfferListener { offer ->
+        val adapter = OffersAdapter(OfferListener { offer ->
             shareDataShopViewModel.setItem(offer)
             offersViewModel.navigateToOfferDetail()
         })
+
+        binding.offersRecyclerView.adapter = adapter
+
+
 
         offersViewModel.navToOfferDitail.observe(viewLifecycleOwner, { nav ->
             if(nav) {
@@ -51,18 +57,29 @@ class OffersFragment : Fragment() {
 
         shareDataShopViewModel.itemShoe.observe(viewLifecycleOwner, { shoe ->
             offersViewModel.setFilter(shoe)
+
         })
 
         shareFilterDataViewModel.item.observe(viewLifecycleOwner, { filter ->
+            Log.i("filter", "Filter size: " + filter?.us?.toString())
+            filter?.let {
+                offersViewModel.setFilter(it)
 
-            filter?.let { offersViewModel.setFilter(it) }
+            }
+
+            //Attach new data because livedata was reassigned
+            offersViewModel.offers.observe(viewLifecycleOwner, { offers ->
+                adapter.submitList(offers)
+            })
+
 
         })
+
 
 
         offersViewModel.navBackToShop.observe(viewLifecycleOwner, { nav ->
             if(nav){
-                findNavController().navigate(R.id.action_offersFragment_to_navigation_shop)
+                findNavController().popBackStack()
                 offersViewModel.navBackToShopFinished()
             }
         })
@@ -73,6 +90,7 @@ class OffersFragment : Fragment() {
                 offersViewModel.navigateToFilterFinished()
             }
         })
+
 
         return binding.root
     }

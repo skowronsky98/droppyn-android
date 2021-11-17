@@ -71,7 +71,8 @@ class MyOfferFragment : Fragment() {
         myOfferViewModel.navToHome.observe(viewLifecycleOwner,{ nav ->
             if(nav){
 
-                findNavController().navigate(R.id.action_myOfferFragment_to_navigation_home)
+//                findNavController().navigate(R.id.action_myOfferFragment_to_navigation_home)
+                findNavController().popBackStack()
                 myOfferViewModel.navigationToHomeFinished()
             }
         })

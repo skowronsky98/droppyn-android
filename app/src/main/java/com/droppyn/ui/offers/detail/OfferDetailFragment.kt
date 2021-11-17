@@ -51,7 +51,7 @@ class OfferDetailFragment : Fragment() {
 
         offerDetailViewModel.navBackToOffers.observe(viewLifecycleOwner,{ nav ->
             if(nav) {
-                findNavController().navigate(R.id.action_offerDetailFragment_to_offersFragment)
+                findNavController().popBackStack()
                 offerDetailViewModel.navBackToOffersFinished()
             }
         })

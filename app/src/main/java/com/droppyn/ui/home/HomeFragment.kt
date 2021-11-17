@@ -58,6 +58,9 @@ class HomeFragment : Fragment() {
       if(navigate){
         findNavController().navigate(R.id.action_navigation_home_to_myOfferFragment)
         homeViewModel.onMyOfferNavigated()
+
+
+
       }
     })
 

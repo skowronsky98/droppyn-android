@@ -26,7 +26,6 @@ class ShoeAdapter(val clickListener: ShoeListener): ListAdapter<Shoe, ShoeAdapte
         }
     }
 
-
     companion object DiffCallback : DiffUtil.ItemCallback<Shoe>() {
         override fun areItemsTheSame(oldItem: Shoe, newItem: Shoe): Boolean {
             return oldItem === newItem

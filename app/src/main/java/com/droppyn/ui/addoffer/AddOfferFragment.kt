@@ -41,7 +41,7 @@ class AddOfferFragment : Fragment() {
 
         addOfferViewModel.navToHome.observe(viewLifecycleOwner, { nav ->
             if(nav) {
-                findNavController().navigate(R.id.action_addOfferFragment_to_navigation_home)
+                findNavController().popBackStack()
                 addOfferViewModel.navigationToHomeFinished()
             }
         })

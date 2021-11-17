@@ -65,7 +65,7 @@ class SignupFragment : Fragment() {
 
     fun navToLogin(){
         val navController = NavHostFragment.findNavController(this)
-        navController.navigate(R.id.action_signupFragment_to_loginFragment)
+        navController.popBackStack()
     }
 
     fun navToMainActivity(){

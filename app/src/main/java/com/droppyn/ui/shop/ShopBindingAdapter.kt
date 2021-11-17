@@ -8,4 +8,5 @@ import com.droppyn.domain.Shoe
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Shoe>?){
     val adapter = recyclerView.adapter as ShoeAdapter
     adapter.submitList(data)
+
 }

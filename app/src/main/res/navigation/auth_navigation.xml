@@ -14,9 +14,5 @@
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.droppyn.auth.signup.SignupFragment"
-        android:label="SignupFragment" >
-        <action
-            android:id="@+id/action_signupFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        android:label="SignupFragment" />
 </navigation>
