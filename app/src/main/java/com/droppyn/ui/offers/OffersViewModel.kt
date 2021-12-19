@@ -50,16 +50,16 @@ class OffersViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
-    private val _navToOfferDitail = MutableLiveData<Boolean>()
-    val navToOfferDitail: LiveData<Boolean>
-        get() = _navToOfferDitail
+    private val _navToOfferDetail = MutableLiveData<Boolean>()
+    val navToOfferDetail: LiveData<Boolean>
+        get() = _navToOfferDetail
 
     fun navigateToOfferDetail(){
-        _navToOfferDitail.value = true
+        _navToOfferDetail.value = true
     }
 
     fun navigateToOfferDetailFinished(){
-        _navToOfferDitail.value = false
+        _navToOfferDetail.value = false
     }
 
     private val _navToFilter = MutableLiveData<Boolean>()

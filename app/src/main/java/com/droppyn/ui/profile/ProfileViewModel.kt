@@ -32,6 +32,20 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         _changeProfilePicture.value = false
     }
 
+    private val _navToSettings = MutableLiveData<Boolean>()
+    val navToSettings : LiveData<Boolean>
+        get() = _navToSettings
+
+    fun navToSettings(){
+        _navToSettings.value = true
+    }
+
+    fun navToSettingsFinished(){
+        _navToSettings.value = false
+    }
+
+
+
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ProfileViewModel::class.java)) {

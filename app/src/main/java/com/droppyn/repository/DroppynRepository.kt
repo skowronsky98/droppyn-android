@@ -10,13 +10,9 @@ import com.droppyn.domain.*
 import com.droppyn.network.DroppynApi
 import com.droppyn.network.dto.*
 import com.droppyn.uitl.TestUtil
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.internal.http1.Http1ExchangeCodec
 import retrofit2.HttpException
-import retrofit2.http.HTTP
-import java.io.IOException
 
 class DroppynRepository(private val database: DroppynDatabase) {
     val brands: LiveData<List<Brand>> =

@@ -40,7 +40,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.droppyn.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/myOfferFragment"
         android:name="com.droppyn.ui.myoffer.MyOfferFragment"
@@ -77,4 +81,8 @@
         android:id="@+id/filterFragment"
         android:name="com.droppyn.ui.offers.filter.FilterFragment"
         android:label="FilterFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.droppyn.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

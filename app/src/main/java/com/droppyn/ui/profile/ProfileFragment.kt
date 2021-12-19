@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.droppyn.R
 import com.droppyn.databinding.FragmentProfileBinding
 import com.droppyn.ui.myoffer.MyOfferViewModel
 
@@ -31,17 +33,28 @@ class ProfileFragment : Fragment() {
   ): View? {
     binding = FragmentProfileBinding.inflate(inflater, container, false)
     binding.profileViewModel = profileViewModel
+    binding.lifecycleOwner = this
 
     profileViewModel.changeProfilePicture.observe(viewLifecycleOwner, { changePhoto ->
+
       if (changePhoto){
         openActivityForResult()
         profileViewModel.changeProfilePictureFinished()
       }
     })
 
+
+
     profileViewModel.profile.observe(viewLifecycleOwner,{ user ->
       if(user != null){
           binding.user = user
+      }
+    })
+
+    profileViewModel.navToSettings.observe(viewLifecycleOwner, { nav ->
+      if(nav) {
+        findNavController().navigate(R.id.action_navigation_profile_to_settingsFragment)
+        profileViewModel.navToSettingsFinished()
       }
     })
 
