@@ -13,9 +13,23 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
     var profile = MutableLiveData<User>()
 
+    val firstname = MutableLiveData<String>()
+    val surname = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
+    val phone = MutableLiveData<String>()
+    val bio = MutableLiveData<String>()
+
+
+
     init {
         viewModelScope.launch {
-            droppynRepository.getProfile()?.let { profile.value = it }
+            droppynRepository.getProfile()?.let { profile.value = it
+                firstname.value = it.firstname
+                surname.value = it.surname
+                email.value = it.email
+                phone.value = it.phone
+                bio.value = it.bio
+            }
         }
     }
 
@@ -31,6 +45,10 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
         _navBack.value = false
     }
 
+
+    fun saveSettings(){
+
+    }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
