@@ -25,6 +25,11 @@ class ProfileFragment : Fragment() {
     ViewModelProvider(this, ProfileViewModel.Factory(activity.application)).get(ProfileViewModel::class.java)
   }
 
+  override fun onResume() {
+    super.onResume()
+    profileViewModel.refreshProfile()
+  }
+
 
   override fun onCreateView(
     inflater: LayoutInflater,

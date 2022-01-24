@@ -35,6 +35,7 @@ class SettingsFragment : Fragment() {
 
         settingsViewModel.navBack.observe(viewLifecycleOwner, { nav ->
             if(nav) {
+
                 findNavController().popBackStack()
                 settingsViewModel.navBackFinished()
             }

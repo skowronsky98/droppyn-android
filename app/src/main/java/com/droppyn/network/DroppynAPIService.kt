@@ -77,6 +77,10 @@ interface DroppynAPIService {
                               @Body myOfferDTO: MyOfferDTO): MyOfferDTO
 
 
+    @PUT("user")
+    suspend fun updateProfile(@Header("Authorization") auth: String,
+                              @Body profile: ProfileUpdateDTO): UserDTO
+
 //    @GET("mentee")
 //    suspend fun getMentee(@Query("email") email : String) : MenteeDTO
 }

@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.droppyn.database.getDatabase
 import com.droppyn.domain.User
+import com.droppyn.network.dto.ProfileUpdateDTO
 import com.droppyn.repository.DroppynRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.plus
 
 class SettingsViewModel(application: Application) : AndroidViewModel(application)  {
     private val database = getDatabase(application)
@@ -47,6 +49,24 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
 
 
     fun saveSettings(){
+
+        profile.value?.let {
+            val newProfile = ProfileUpdateDTO(
+                id = it.id,
+                firstname = firstname.value,
+                surname = surname.value,
+                phone = phone.value,
+                photoURL = it.photoURL,
+                bio = bio.value
+                )
+
+            viewModelScope.launch {
+                droppynRepository.updateProfile(newProfile)
+                navBack()
+
+            }
+
+        }
 
     }
 

@@ -159,6 +159,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="18dp"
                 android:layout_marginBottom="8dp"
+                android:inputType="none"
+                android:enabled="false"
                 android:text="@={settingsViewModel.email}" />
 
         </androidx.cardview.widget.CardView>

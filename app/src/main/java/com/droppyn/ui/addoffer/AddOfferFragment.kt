@@ -72,11 +72,6 @@ class AddOfferFragment : Fragment() {
 
         shareDataShoeViewModel.item.observe(viewLifecycleOwner,{ shoe ->
             addOfferViewModel.setShoe(shoe)
-//            disableFragment(fragment)
-//            fragment = ShoeItemFragment()
-//            viewFragment(fragment)
-
-
 
 //            Log.i("offer", shoe.model)
 

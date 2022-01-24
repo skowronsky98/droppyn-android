@@ -543,6 +543,59 @@ class DroppynRepository(private val database: DroppynDatabase) {
         }
     }
 
+
+    suspend fun updateProfile(profile: ProfileUpdateDTO){
+        withContext(Dispatchers.IO){
+            try {
+                val token = database.tokenDao.getToken().accessToken
+                val auth = "Bearer $token"
+
+                val user = DroppynApi.retrofitService.updateProfile(
+                    auth = auth,
+                    profile = profile)
+
+                database.profileDao.deleteAll()
+                Log.i("retrofit",user.id)
+
+                database.profileDao.insert(NetworkUserContainer(user).asDatabaseProfileModel())
+
+                //refreshProfile()
+
+            }catch (throwable: Throwable){
+                when (throwable) {
+                    is HttpException -> {
+                        val code = throwable.code()
+
+                        if(code == 401){
+                            Log.i("retrofit","refreshing Expired Token")
+
+                            if(refreshToken()){
+                                Log.i("retrofit","refreshing Offers")
+                                updateProfile(profile)
+                            }
+                            else
+                            {
+
+                                Log.i("retrofit","LOGOUT")
+                                //TODO logout
+                            }
+
+                        }
+                        else{
+                            //TODO logout ??
+                            Log.i("retrofit","NETWORK problem Offers")
+                        }
+                    }
+                    else -> {
+                        Log.i("retrofit",throwable.message.toString())
+                    }
+                }
+
+            }
+
+        }
+    }
+
     suspend fun cleanDatabase(){
         withContext(Dispatchers.IO){
             try {

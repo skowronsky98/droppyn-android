@@ -15,9 +15,7 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
     var profile = MutableLiveData<User>()
 
     init {
-        viewModelScope.launch {
-            droppynRepository.getProfile()?.let { profile.value = it }
-        }
+        refreshProfile()
     }
 
     private val _changeProfilePicture = MutableLiveData<Boolean>()
@@ -44,7 +42,11 @@ class ProfileViewModel(application: Application) : AndroidViewModel(application)
         _navToSettings.value = false
     }
 
-
+    fun refreshProfile(){
+        viewModelScope.launch {
+            droppynRepository.getProfile()?.let { profile.value = it }
+        }
+    }
 
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
