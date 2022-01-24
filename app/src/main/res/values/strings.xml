@@ -8,7 +8,7 @@
     <string name="shoe_image">Shoe Image</string>
     <string name="my_offers">My Offers</string>
     <string name="image_of_a_shoe_offer">Image of a shoe offer</string>
-    <string name="price">Price</string>
+    <string name="price">Price (PLN)</string>
     <string name="save">Save</string>
     <string name="size">Size</string>
     <string name="bio">Bio</string>
@@ -45,4 +45,7 @@
     <string name="signup">Sign up</string>
     <string name="seller">Seller</string>
     <string name="settings">Settings</string>
+    <string name="pln">PLN</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

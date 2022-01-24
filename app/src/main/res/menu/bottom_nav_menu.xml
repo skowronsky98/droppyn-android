@@ -11,10 +11,10 @@
         android:icon="@drawable/ic_round_shop_24"
         android:title="@string/title_shop"/>
 
-    <item
-        android:id="@+id/navigation_chat"
-        android:icon="@drawable/ic_round_chat"
-        android:title="@string/title_chat"/>
+<!--    <item-->
+<!--        android:id="@+id/navigation_chat"-->
+<!--        android:icon="@drawable/ic_round_chat"-->
+<!--        android:title="@string/title_chat"/>-->
 
     <item
         android:id="@+id/navigation_profile"

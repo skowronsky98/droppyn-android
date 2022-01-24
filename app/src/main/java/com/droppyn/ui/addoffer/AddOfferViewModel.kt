@@ -17,24 +17,18 @@ class AddOfferViewModel(application: Application) : AndroidViewModel(application
     val sizeChart = droppynRepository.sizechart
     val shoes = droppynRepository.shoes
 
-//    val getProfile = droppynRepository.getProfile()
-
     private var _offerCrator =  OfferCreator()
 
     val shoe = MutableLiveData<Shoe>()
     val price = MutableLiveData<String>()
     val bio = MutableLiveData<String>()
 
-
     init {
         viewModelScope.launch {
             droppynRepository.getProfile()?.let { _offerCrator.user = it }
             droppynRepository.refreshSheos()
-//            droppynRepository.refreshSizeChart()
         }
     }
-
-
 
     fun setShoe(shoe: Shoe){
         this.shoe.value = shoe

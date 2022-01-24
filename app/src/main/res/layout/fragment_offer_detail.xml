@@ -171,7 +171,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:text="@string/usd_sign" />
+                            android:text="@string/pln" />
 
 
                         <TextView
