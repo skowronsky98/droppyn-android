@@ -55,15 +55,7 @@
                     android:onClick="@{() -> addOfferViewModel.showShoeBottomSheet()}"
                     android:id="@+id/fragment_container_view">
 
-
-
-
                 </androidx.fragment.app.FragmentContainerView>
-
-
-
-
-
 
 
                 <androidx.appcompat.widget.Toolbar
@@ -121,6 +113,15 @@
                     android:paddingBottom="8dp"
                     app:cardElevation="0dp"
                     android:background="@color/white">
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/fragment_container_view_model">
+
+
+
+                    </androidx.fragment.app.FragmentContainerView>
 
 <!--                    <TextView-->
 <!--                        android:id="@+id/offer_shoe_model"-->

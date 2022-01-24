@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isEmpty
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.droppyn.R
 import com.droppyn.databinding.FragmentAddOfferBinding
 import com.droppyn.domain.Shoe
 import com.droppyn.ui.addoffer.item.ShoeButtonFragment
+import com.droppyn.ui.addoffer.item.ShoeDataFragment
 import com.droppyn.ui.addoffer.item.ShoeItemFragment
 import com.droppyn.ui.home.ShareDataMyOffersViewModel
 import com.droppyn.ui.myoffer.MyOfferViewModel
@@ -41,21 +43,21 @@ class AddOfferFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.addOfferViewModel = addOfferViewModel
 
+        val infoFragment = ShoeDataFragment()
 
         var fragment: Fragment = ShoeButtonFragment()
-        viewFragment(fragment)
-
+        viewFragment(R.id.fragment_container_view, fragment)
 
         shareDataShoeViewModel.active.observe(viewLifecycleOwner, {active ->
-            disableFragment(fragment)
-
             if(active){
-                fragment = ShoeItemFragment()
-            }else{
-                fragment = ShoeButtonFragment()
-            }
-            viewFragment(fragment)
+                if(binding.fragmentContainerViewModel.isEmpty()){
+                    viewFragment(R.id.fragment_container_view_model, infoFragment)
 
+                    disableFragment(fragment)
+                    fragment = ShoeItemFragment()
+                    viewFragment(R.id.fragment_container_view, fragment)
+                }
+            }
         })
 
         addOfferViewModel.navToHome.observe(viewLifecycleOwner, { nav ->
@@ -115,9 +117,9 @@ class AddOfferFragment : Fragment() {
         return binding.root
     }
 
-    private fun viewFragment(fragment: Fragment){
+    private fun viewFragment(id: Int, fragment: Fragment){
         childFragmentManager.commit {
-            add(R.id.fragment_container_view, fragment)
+            add(id, fragment)
             setReorderingAllowed(true)
         }
     }
