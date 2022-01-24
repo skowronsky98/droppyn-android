@@ -8,10 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.commit
 import androidx.navigation.fragment.findNavController
 import com.droppyn.R
 import com.droppyn.databinding.FragmentAddOfferBinding
 import com.droppyn.domain.Shoe
+import com.droppyn.ui.addoffer.item.ShoeButtonFragment
+import com.droppyn.ui.addoffer.item.ShoeItemFragment
 import com.droppyn.ui.home.ShareDataMyOffersViewModel
 import com.droppyn.ui.myoffer.MyOfferViewModel
 import com.droppyn.ui.shoepicker.ActionBottom
@@ -39,8 +42,27 @@ class AddOfferFragment : Fragment() {
         binding.addOfferViewModel = addOfferViewModel
 
 
+        var fragment: Fragment = ShoeButtonFragment()
+        viewFragment(fragment)
+
+
+        shareDataShoeViewModel.active.observe(viewLifecycleOwner, {active ->
+            disableFragment(fragment)
+
+            if(active){
+                fragment = ShoeItemFragment()
+            }else{
+                fragment = ShoeButtonFragment()
+            }
+            viewFragment(fragment)
+
+        })
+
         addOfferViewModel.navToHome.observe(viewLifecycleOwner, { nav ->
             if(nav) {
+
+                shareDataShoeViewModel.desacite()
+
                 findNavController().popBackStack()
                 addOfferViewModel.navigationToHomeFinished()
             }
@@ -48,6 +70,12 @@ class AddOfferFragment : Fragment() {
 
         shareDataShoeViewModel.item.observe(viewLifecycleOwner,{ shoe ->
             addOfferViewModel.setShoe(shoe)
+//            disableFragment(fragment)
+//            fragment = ShoeItemFragment()
+//            viewFragment(fragment)
+
+
+
 //            Log.i("offer", shoe.model)
 
         })
@@ -85,6 +113,17 @@ class AddOfferFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    private fun viewFragment(fragment: Fragment){
+        childFragmentManager.commit {
+            add(R.id.fragment_container_view, fragment)
+            setReorderingAllowed(true)
+        }
+    }
+
+    private fun disableFragment(fragment: Fragment){
+        childFragmentManager.beginTransaction().remove(fragment).commit()
     }
 
     private fun openShoesBottomSheet() {

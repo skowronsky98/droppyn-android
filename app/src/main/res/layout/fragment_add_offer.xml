@@ -47,39 +47,20 @@
 <!--                    app:layout_constraintEnd_toEndOf="parent"-->
 <!--                    app:layout_constraintStart_toStartOf="parent"-->
 <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-                <androidx.constraintlayout.widget.ConstraintLayout
+
+                <androidx.fragment.app.FragmentContainerView
+                    xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
-
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:onClick="@{() -> addOfferViewModel.showShoeBottomSheet()}"
-                        android:text="Click to Add Shoes"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        android:textColor="@color/primary"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.486" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:onClick="@{() -> addOfferViewModel.showShoeBottomSheet()}"
-                        android:src="@drawable/ic_round_add_24"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-                        app:layout_constraintEnd_toStartOf="@+id/textView3"
-                        app:layout_constraintTop_toTopOf="@+id/textView3"
-                        app:tint="@color/primary" />
+                    android:layout_height="200dp"
+                    android:onClick="@{() -> addOfferViewModel.showShoeBottomSheet()}"
+                    android:id="@+id/fragment_container_view">
 
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.fragment.app.FragmentContainerView>
+
+
 
 
 
